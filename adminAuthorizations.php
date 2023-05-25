@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		<div id="authorization" style="text-align:justify;">
 
-			<?php if($users): ?>
+            <?php if($users.count() <= 1): ?>
 				<section>
 
 				  <?php if( /* poziom autoryzacji obecnie zalogowanego > 1 */ ):?>
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							<th> Authorization lvl </th>
 						</tr>
 						<?php foreach($users as $user): ?>
-						  <?php if($user['authorization'] > /* poziom autoryzacji obecnie zalogowanego */) ?>
+						  <?php if($user['authorization'] < /* poziom autoryzacji obecnie zalogowanego */) ?>
 							<tr>
 								<td> <a href="users_permissions.php"> <?php $user['name'] ?> </a></td>
 								<td> <?php $user['authorization'] ?>  </td>
