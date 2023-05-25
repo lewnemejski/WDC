@@ -8,6 +8,27 @@ body
 	margin: 0;
 }
 
+table, tr, td {
+	border: 2px solid lightgreen;
+}
+
+td {
+	text-align: center;
+	background-color: white;
+}
+
+th {
+	color: gold;
+}
+
+table {
+	width: 40%;
+	margin: 0 30% 0 30%;
+	background-color: lightgreen;
+	display: inline-block;
+}
+
+
 #header
 {
 	color: #00b248;
