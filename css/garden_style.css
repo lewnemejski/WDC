@@ -1,0 +1,126 @@
+#menu
+{
+	text-align: center;
+}
+
+#menu > ol
+{
+	display: inline-block;
+	text-align: justify;
+	line-height: 150%;
+}
+
+.visible
+{
+	display: block !important;
+}
+
+.hidden
+{
+	display: none !important;
+}
+
+.visible_gra
+{
+	display: block !important;
+}
+
+.hidden_gra
+{
+	display: none !important;
+}
+
+.motyl_v
+{
+	display: block !important;
+}
+
+.motyl_h
+{
+	display: none !important;
+}
+
+.niebo_v
+{
+	display: block !important;
+}
+
+.niebo_h
+{
+	display: none !important;
+}
+
+#game
+{
+	width: 700px;
+	margin: auto;
+	text-align: center !important;
+}
+
+#game > button
+{
+	background-color: lightblue;
+	font-size: 20px;
+	margin: auto;
+}
+
+#timer
+{
+	font-size: 25px;
+	font-weight: bold;
+}
+		
+#fPlan 
+{
+	width: 700px;
+	height: 50px;
+	position: relative;
+	background: #15cb55;
+}
+
+#sPlan
+{
+	width: 700px;
+	height: 20px;
+	position: relative;
+	background: #15cb55;
+}
+		
+#sky
+{
+	width: 700px;
+	height: 45px;
+	position: relative;
+	background: #3474e9;
+}
+
+#animate 
+{
+	width: 50px;
+	height: 30px;
+	position: absolute;
+	left: 0px;
+}
+		
+#cloud
+{
+	width: 30px;
+	height: 13px;
+	position: absolute;
+	left: 0px;
+}
+
+#wynik_a
+{
+	text-align: center;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#wynik
+{
+	text-align: center;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+		

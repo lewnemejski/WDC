@@ -1,0 +1,200 @@
+form
+{
+	text-align: center;
+	line-height: 150%;
+}
+
+label
+{
+	font-size: 20px;
+	line-height: 180%;
+}
+
+form > span
+{
+	font-size: 25px;
+	font-weight: bold;
+}
+
+input
+{
+	font-size: 15px;
+	line-height: 180%;
+}
+
+p
+{
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: justify;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+table,th,td
+{
+	width: auto;
+	border: 2px solid white;
+	text-align: center;
+}
+
+th
+{
+	padding: 5px;
+	font-size: 17px;
+}
+
+#content
+{
+	width: auto;
+	text-align: center;
+}
+		
+#tabs > ul
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	height: 30px;
+	display: inline-block;
+}
+
+#tabs > ul > li:first-child
+{
+	border-right: 2px dashed white;
+}
+
+#tabs > ul > li:nth-child(2)
+{
+	border-right: 2px dashed white;
+}
+
+#tabs > ul > li
+{
+	float: left;
+	width: 230px;
+	height: 26px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #26a69a;
+}
+		
+#tabs > ul a
+{
+	text-decoration: none;
+	display: block;
+	color: white;
+}
+
+#commentary
+{
+	resize: none;
+}
+
+#table
+{
+	display: flex;
+	justify-content: center;
+}
+
+.strong
+{
+	font-weight: bold;
+	
+}
+
+@media only screen and (min-width: 0px) {
+	#tabs > ul > li{
+		float: none;
+		width: 230px;
+		height: 30px;
+		text-align: center;
+		font-size: 20px;
+		font-weight: bold;
+		background-color: #26a69a;
+	}
+	#tabs > ul > li:first-child{
+		border-right: none;
+		border-bottom: 2px dashed white;
+	}
+
+	#tabs > ul > li:nth-child(2){
+		border-right: none;
+		border-bottom: 2px dashed white;
+	}
+	p{
+		width: auto;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	#anim{
+		z-index: -1;
+	}
+}
+
+@media only screen and (min-width: 600px) {
+	#tabs > ul > li{
+		float: none;
+		width: 230px;
+		height: 30px;
+		text-align: center;
+		font-size: 20px;
+		font-weight: bold;
+		background-color: #26a69a;
+	}
+	#tabs > ul > li:first-child{
+		border-bottom: 2px dashed white;
+	}
+
+	#tabs > ul > li:nth-child(2){
+		border-bottom: 2px dashed white;
+	}
+		p{
+		width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	#anim{
+		z-index: -1;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	#tabs > ul > li{
+		float: left;
+		width: 220px;
+		height: 26px;
+		text-align: center;
+		font-size: 20px;
+		font-weight: bold;
+		background-color: #26a69a;
+	}
+	#tabs > ul > li:first-child{
+		border-right: 2px dashed white;
+		border-bottom: none;
+	}
+
+	#tabs > ul > li:nth-child(2){
+		border-right: 2px dashed white;
+		border-bottom: none;
+	}
+	p{
+		width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: justify;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	#anim{
+		z-index: 1;
+	}
+}
