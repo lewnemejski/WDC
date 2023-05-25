@@ -1,14 +1,32 @@
+<?php
+
+session_start();
+
+$users = getAllUsers();
+$objects = getAllObjects();
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_POST['logout']) {
+        session_destroy();
+        header('Location:WAI-development_view.php');
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pl">
 
 <head>
 
 	<meta charset="utf-8"/>
-	<title>Jaœminowy ogródek</title>
-	<meta name="description" content="Strona poœwiêcona kwiatom i motylom."/>
+	<title>Jaï¿½minowy ogrï¿½dek</title>
+	<meta name="description" content="Strona poï¿½wiï¿½cona kwiatom i motylom."/>
 	<meta name="keywords" content=""/>
 	<meta name="author" content="s189477, s191687"/>
-	
+
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -22,7 +40,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
 	<noscript>
-		
+
 			<style>
 				.noscript{
 					display: block;
@@ -33,8 +51,8 @@
 				}
 
 			</style>
-			
-		</noscript>
+
+	</noscript>
 	
 </head>
 
@@ -46,14 +64,14 @@
 			
 				<div class="logo">
 					<img id="logo_motyl" src="img/motyl.png" alt="Logo strony" class="responsive"/> 
-					<br/>Jaœminowy ogródek
+					<br/>Jaï¿½minowy ogrï¿½dek
 				</div>
 			<nav>
 				<div id="nav">
 					<ol>
 						<li><a href="index.php"><i class="fas fa-home"></i></a></li>
 						<li><a href="galery.php">Galeria</a></li>
-						<li><a href="garden.php">Ogródek</a></li>
+						<li><a href="garden.php">Ogrï¿½dek</a></li>
 						<li><a href="contact.php">Kontakt</a></li>
 						<li><a href="login.php" role="button"><i class="fas fa-user"></i></a></li>
 						<li><a href="#" role="button" onClick="dark()"><i id="sun" class="fas fa-moon"></i></a></li>
@@ -61,57 +79,62 @@
 				</div>
 			</nav>	
 				<div class="noscript">
-					<i class="fas fa-exclamation-triangle"></i><p>Strona wymaga do poprawnego dzia³ania w³¹czonego JS.	W³¹cz w przegl¹darce JS oraz/albo wy³¹cz dodatki blokuj¹ce JS, a nastêpnie odœwie¿ witrynê.
+					<i class="fas fa-exclamation-triangle"></i><p>Strona wymaga do poprawnego dziaï¿½ania wï¿½ï¿½czonego JS.	Wï¿½ï¿½cz w przeglï¿½darce JS oraz/albo wyï¿½ï¿½cz dodatki blokujï¿½ce JS, a nastï¿½pnie odï¿½wieï¿½ witrynï¿½.
 					<br/> 
-					<span>Dziêkujemy za zrozumienie i ¿yczymy mi³ego korzystania z serwisu.</span><br/>
+					<span>Dziï¿½kujemy za zrozumienie i ï¿½yczymy miï¿½ego korzystania z serwisu.</span><br/>
 				</div>
 				
 			</header>
 		</div>
 		
 		<div id="authorization" style="text-align:justify;">
-			<section>
 
-			  <table>
-				  <tr>
-					  <th> Users </th>
-					  <th> Authorization lvl </th>
-				  </tr>
-				  <tr>
-					  <td> User1 </td>
-					  <td> lvl 1 </td>
-				  </tr>
-				  <tr>
-					  <td> User2 </td>
-					  <td> lvl 2 </td>
-				  </tr>
-				  <tr>
-					  <td> User... </td>
-					  <td> lvl ... </td>
-				  </tr>
-			  </table>
+			<?php if($users): ?>
+				<section>
 
-			  <table>
-				  <tr>
-					  <th> Objects </th>
-					  <th> Authorization lvl </th>
-				  </tr>
-				  <tr>
-					  <td> Obj1 </td>
-					  <td> lvl 1 </td>
-				  </tr>
-				  <tr>
-					  <td> Obj2 </td>
-					  <td> lvl 2 </td>
-				  </tr>
-				  <tr>
-					  <td> Obj... </td>
-					  <td> lvl ... </td>
-				  </tr>
-			  </table>
+				  <?php if( /* poziom autoryzacji obecnie zalogowanego > 1 */ ):?>
+					  <table>
+						<tr>
+							<th> Users </th>
+							<th> Authorization lvl </th>
+						</tr>
+						<?php foreach($users as $user): ?>
+						  <?php if($user['authorization'] > /* poziom autoryzacji obecnie zalogowanego */) ?>
+							<tr>
+								<td> <a href="users_permissions.php"> <?php $user['name'] ?> </a></td>
+								<td> <?php $user['authorization'] ?>  </td>
+							</tr>
+						<?php endforeach ?>
 
-			</section>
-			
+					  </table>
+				  <?php endif ?>
+
+					<table>
+						<tr>
+							<th> Objects </th>
+							<th> Authorization lvl </th>
+						</tr>
+						<?php if($objects): ?>
+							<?php foreach($objects as $object): ?>
+							<tr>
+								<td> <?php $object['name'] ?> </td>
+								<td> <?php $object['authorization'] ?> </td>
+                                <?php if($object['authorization'] <= /* poziom autoryzacji obecnie zalogowanego */): ?>
+									<td> Yes </td>
+								<?php else: ?>
+									<td> No </td>
+								<?php endif ?>
+							</tr>
+							<?php endforeach ?>
+						<?php endif ?>
+
+					</table>
+
+				</section>
+			<?php else: ?> 
+				<p>No users exists at the moment</p>
+			<?php endif ?>
+
 		</div>
 		
 		<div id="footer">
