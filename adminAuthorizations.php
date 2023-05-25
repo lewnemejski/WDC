@@ -69,7 +69,7 @@
 			</header>
 		</div>
 		
-		<div id="content" style="text-align:justify;">
+		<div id="authorization" style="text-align:justify;">
 			<section>
 
 			  <table>
