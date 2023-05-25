@@ -42,6 +42,6 @@ function db_Login(){
 }
 
 function changePermission($name, $permission_lvl) {
-    $sql = "UPDATE users SET role=$permission_lvl WHERE name=$name";
+    $sql = "UPDATE users SET role='" . $permission_lvl . "' WHERE name='" . $name . "'";
 }
 ?>

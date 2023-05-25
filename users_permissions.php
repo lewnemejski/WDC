@@ -6,16 +6,21 @@ $users = getAllUsers();
 $objects = getAllObjects();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    var radios = document.getElementsByName('permission_lvl');
 
-    for (var i = 0, length = radios.length; i < length; i++) {
-        if (radios[i].checked) {
-            $permission = radios[i].value;
-            changePermission($_SESSION['user_name'], $permission);
+    echo <<<END 
 
-            break;
+        var radios = document.getElementsByName('permission_lvl');
+
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                $permission = radios[i].value;
+                changePermission($_SESSION['user_name'], $permission);
+
+                break;
+            }
         }
-    }
+
+    END;
 }
 
 ?>
