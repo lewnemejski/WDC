@@ -1,44 +1,52 @@
 <?php
 	session_start();
-	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
-	{
-		header('Location: test.php');
-		exit();
-	}
-	require_once "functions.php";
-	require_once "business.php";
-
-	if (isset($_POST['name']))
-	{
+	require_once 'functions.php';
+	require_once 'business.php';
+	
+	$user = [
+		'name' => null,
+		'psw' => null,
+		'email' => null,
+		'_id' => null
+	];
+	if (isset($_POST['mail'])) {
 		$nick = $_POST['name'];
-        $psw = $_POST['psw'];
+		$email = $_POST['mail'];	
+		$haslo1 = $_POST['psw'];
+		$haslo2 = $_POST['psw1'];
 		sanitizeString($nick);
-		sanitizeString($psw);
-		$user = findUser($nick);
-		
-		if($user['name']==$_POST['name'])
-		{		
-			if (password_verify($psw, $user['psw']))
+		sanitizeString($haslo1);
+		sanitizeString($haslo2);
+			if ($haslo1!=$haslo2)
 			{
-				$_SESSION['zalogowany'] = true;
-				$_SESSION['user'] = $user['name'];
-								
-				unset($_SESSION['blad']);
-				header('Location: test.php');
+				$_SESSION['e_haslo']="Podane hasła nie są identyczne!";
 			}
-			else 
-			{
-				$_SESSION['blad'] = '<span style="color:red">Nieprawidłowe hasło!</span>';
-				header('Location: login.php');
+			else{
+			
+				$user = findUser($nick);
+				if($user['name']==$nick)
+				{
+					$_SESSION['e_nick']="Istnieje już taki użytkownik!";
+				}
+				else{									
+					$haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
+					$user = [
+						'name' => $nick,
+						'email' => $email,
+						'psw' => $haslo_hash
+					];
+					addUser($user);
+					header('Location: login.php');
+					exit;
+				}
 			}
 		}
-		else 
-		{
-			$_SESSION['blad'] = '<span style="color:red">Nieprawidłowa nazwa!</span>';
-			header('Location: login.php');
+		else {
+			if (!empty($_GET['id'])) {
+				$id = $_GET['id'];
+				$user = $db->users->findOne(['_id' => new ObjectID($id)]);
+			}
 		}
-	}
-								
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -115,30 +123,39 @@
 				
 			</header>
 		</div>
-		<div id="content">
-			<h3>Logowanie:</h3>
-			<form method="post">
+	<div id="content">
+		<h3>Rejestracja:</h3>
+		<form method="post">
+		
+			<label for="name"> Nazwa:</label><br/>
+			<input type="text" id="name" name="name" required /><br/>
+			<?php
+				if (isset($_SESSION['e_nick']))
+				{
+					echo '<div class="error">'.$_SESSION['e_nick'].'</div>';
+					unset($_SESSION['e_nick']);
+				}
+			?>
+			<label for="mail"> Email:</label><br/>
+			<input type="email" id="mail" name="mail" required /><br/>
+			<label for="psw"> Hasło:</label><br/>
+			<input type="password" id="psw" name="psw" required /><br/>
+			<label for="psw1"> Powtórz hasło:</label><br/>
+			<input type="password" id="psw1" name="psw1" required /><br/>
+			<?php
+				if (isset($_SESSION['e_haslo']))
+				{
+					echo '<div class="error">'.$_SESSION['e_haslo'].'</div>';
+					unset($_SESSION['e_haslo']);
+				}
+			?><br/>	
+			<input type="submit" value="Register" name="submit">
 			
-				<label for="name"> Nazwa:</label><br/>
-				<input type="text" id="name" name="name" required /><br/>
-				<label for="psw"> Hasło:</label><br/>
-				<input type="password" id="psw" name="psw" required /><br/><br/>	
-				<?php
-					if (isset($_SESSION['blad']))
-					{
-						echo '<div class="error">'.$_SESSION['blad'].'</div>';
-						unset($_SESSION['blad']);
-					}
-				?>
-				<input type="submit" value="Login" name="submit">
-				
-			</form>
-			<br/>	
-			<span>Nie masz jeszcze konta? <a href="register.php" style="text-decoration:none; color:#ff1744;">Zarejestruj się</a></span>
-			<span>Chcesz wysłać zdjęcie jako gość? <a href="test.php" style="text-decoration:none; color:#ff1744;">Kliknij</a></span>			
-			
-			
-		</div>
+		</form>
+		<br/>
+		<span>Masz już konto? <a href="login.php" style="text-decoration:none; color:#ff1744;">Zaloguj się</a></span>
+		<span>Chcesz wysłać zdjęcie bez logowania? <a href="test.php" style="text-decoration:none; color:#ff1744;">Kliknij</a></span>
+	</div>
 		<div id="footer">
 			<footer>
 				Copyright &copy; Kacper Wszeborowski s189477
@@ -147,4 +164,5 @@
 
 	</div>
 </body>
+
 </html>
