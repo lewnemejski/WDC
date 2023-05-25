@@ -9,10 +9,17 @@ $objects = getAllObjects();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['logout']) {
         session_destroy();
-        header('Location:WAI-development_view.php');
+        header('Location:index.php');
+    }
+	else if ($_POST['name']) {
+		$user_name = $_POST['name'];
+
+		$_SESSION['user_name'] = $user['name'];
+
+		header('Location: user_permissions.php');
+		exit;
     }
 }
-
 ?>
 
 
@@ -89,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		<div id="authorization" style="text-align:justify;">
 
-            <?php if($users.count() <= 1): ?>
+            <?php if($users->num_rows <= 1): ?>
 				<section>
 
 				  <?php if( /* poziom autoryzacji obecnie zalogowanego > 1 */ ):?>
@@ -101,7 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<?php foreach($users as $user): ?>
 						  <?php if($user['authorization'] < /* poziom autoryzacji obecnie zalogowanego */) ?>
 							<tr>
-								<td> <a href="users_permissions.php"> <?php $user['name'] ?> </a></td>
+								<td> 
+                                    <form method="post">
+                                        <input id="name" type="text" value="<?php $user['name'] ?>" hidden />
+                                        <input type="submit" value="<?php $user['name'] ?>" />
+                                    </form>
+								</td>
 								<td> <?php $user['authorization'] ?>  </td>
 							</tr>
 						<?php endforeach ?>
@@ -132,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				</section>
 			<?php else: ?> 
-				<p>No users exists at the moment</p>
+				<p>No users exist at the moment</p>
 			<?php endif ?>
 
 		</div>
