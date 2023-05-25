@@ -5,6 +5,18 @@ session_start();
 $users = getAllUsers();
 $objects = getAllObjects();
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    var radios = document.getElementsByName('permission_lvl');
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            $permission = radios[i].value;
+            changePermission($_SESSION['user_name'], $permission);
+
+            break;
+        }
+    }
+}
 
 ?>
 
@@ -102,6 +114,30 @@ $objects = getAllObjects();
         <div id="authorization" style="text-align:justify;">
             <section>
 
+                <forms>
+                    <fieldset>
+                        <legend>Change permission</legend>
+
+                        <label for="permission1">1</label>
+                        <input type="radio" id="permission1" value="1" name="permission_lvl" />
+
+                        <label for="permission2">2</label>
+                        <input type="radio" id="permission2" value="2" name="permission_lvl" />
+
+                        <?php if(/* poziom autoryzacji obecnego admina */ > 2) ?>
+                        <label for="permission3">3</label>
+                        <input type="radio" id="permission3" value="3" name="permission_lvl" />
+                        <?php endif ?>
+
+                        <?php if(/* poziom autoryzacji obecnego admina */ > 3) ?>
+                        <label for="permission4">4</label>
+                        <input type="radio" id="permission4" value="4" name="permission_lvl" />
+                        <?php endif ?>
+
+                        <input type="submit" value="Submit"/>
+
+                    </fieldset>
+                </forms>
             </section>
         </div>
 
@@ -115,7 +151,7 @@ $objects = getAllObjects();
 
     <script>
 		document.addEventListener("DOMContentLoaded", function() {
-		  tryb(); navi();
+            tryb(); navi();
 		});
     </script>
 

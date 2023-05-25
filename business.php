@@ -1,53 +1,47 @@
 <?php
 
-require '../../vendor/autoload.php';
-use MongoDB\BSON\ObjectID;
+function db_Login(){
 
-function get_db()
-{
-    $mongo = new MongoDB\Client(
-        "mongodb://localhost:27017/wai",
-        [
-            'username' => 'wai_web',
-            'password' => 'w@i_w3b',
-        ]);
+    $host="localhost";
+    $db_user="root";
+    $db_password="";
+    $db_name="test";
 
-    $db = $mongo->wai;
+    $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
-    return $db;
+    if($polaczenie->connect_errno!=0){
+        echo "Error: ".polaczenie->connect_errno;
+    }
+    else{
+        echo "Worked!";
+
+        $sql = "SELECT * FROM users";
+        if($rezultat = @$polaczenie->query($sql)){
+            $polaczenie->close();
+            return $users = $rezultat->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /*
+        if($rezultat = @$polaczenie->query($sql)){
+
+            $wiersz=$rezultat->fetch_assoc();
+
+            echo $wiersz['id']." ".$wiersz['name']." ";
+
+            //$rezultat->free_result();
+
+            $wiersz=$rezultat->fetch_assoc();
+
+            echo $wiersz['id']." ".$wiersz['name']." ";
+
+            $rezultat->free_result();
+        }*/
+
+        $polaczenie->close();
+    }
 }
-function getImages()
-{
-	$db = get_db();
-	$images = $db->images->find();
-	return $images;
-}
-function addImage($image)
-{
-	$db = get_db();
-	$db->images->insertOne($image);
-}
-function findUser($nick)
-{
-	$db = get_db();
-	$user = $db->users->findOne(['name' => $nick]);
-	return $user;
-}
-function addUser($user)
-{
-	$db = get_db();
-	$db->users->insertOne($user);
-}
-function numberOfImages()
-{
-	$db = get_db();
-    $number = $db->images->count();
-	return $number;
-}
-function galeryPage($options)
-{
-	$db = get_db();
-	$images = $db->images->find([], $options);
-	return $images;
+
+function changePermission($name, $permission_lvl) {
+    $sql = "UPDATE users SET role=$permission_lvl WHERE name=$name";
 }
 ?>

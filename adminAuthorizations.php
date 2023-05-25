@@ -5,7 +5,6 @@ session_start();
 $users = getAllUsers();
 $objects = getAllObjects();
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['logout']) {
         session_destroy();
@@ -99,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php if($users->num_rows <= 1): ?>
 				<section>
 
-				  <?php if( /* poziom autoryzacji obecnie zalogowanego > 1 */ ):?>
+				  <?php if( /* poziom autoryzacji obecnie zalogowanego > 2 */ ):?>
 					  <table>
 						<tr>
 							<th> Users </th>
