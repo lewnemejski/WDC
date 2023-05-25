@@ -54,6 +54,8 @@ table {
 #authorzation {
 	position: relative;
 	text-align: center;
+	margin: 0 30% 0 30%;
+	width: 40%;
 }
 
 #footer {
