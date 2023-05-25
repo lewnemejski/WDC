@@ -22,12 +22,10 @@ th {
 }
 
 table {
-	width: 40%;
-	margin: 0 30% 0 30%;
+	width: 200px;
 	background-color: lightgreen;
-	display: block;
+	display: inline-block;
 }
-
 
 #header
 {
@@ -53,8 +51,9 @@ table {
 	padding-bottom: 10px;
 }
 
-#authorization {
-	float:left;
+#authorzation {
+	position: relative;
+	text-align: center;
 }
 
 #footer {
