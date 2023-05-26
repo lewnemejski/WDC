@@ -2,6 +2,8 @@
 	session_start();
 	require "page.php";
 	require_once "functions.php";
+	if(isset($_SESSION['authorization'])==false)
+		$_SESSION['authorization'] = 1;
 ?>	
 	<?php if($_SESSION['authorization'] > 1): ?>
 		<h3>Wyślij obrazek:</h3>

@@ -83,7 +83,8 @@
 				'author' => $author,
 				'title' => $title,
 				'source' => $source,
-				'private' => false
+				'private' => false,
+				'auth' => $_SESSION['authorization']
 			];
 			if(isLogged())
 			{
@@ -93,7 +94,8 @@
 						'author' => $_SESSION['user'],
 						'title' => $title,
 						'source' => $source,
-						'private' => true
+						'private' => true,
+						'auth' => $_SESSION['authorization']
 					];
 				}
 				else
@@ -102,27 +104,27 @@
 						'author' => $_SESSION['user'],
 						'title' => $title,
 						'source' => $source,
-						'private' => false
+						'private' => false,
+						'auth' => $_SESSION['authorization']
 					];
 				}
 			}
-			
 			addImage($image);
 		}
-		else 
+		/*else 
 		{
 			if (!empty($_GET['id'])) {
 				$id = $_GET['id'];
 				$image = $db->images->findOne(['_id' => new ObjectID($id)]);
 			}
-		}
+		}*/
 		if($imageFileType == "png")
 			{$fsource = imagecreatefrompng($target_dir.$source);}
 		else
 			{$fsource = imagecreatefromjpeg($target_dir.$source);}
 		$width = imagesx($fsource);
 		$height = imagesy($fsource);
-		
+		echo "No się udało";
 		$new_w = 200;
 		$new_h = 125;
 		$thumbnail = imagecreatetruecolor($new_w, $new_h);
@@ -131,7 +133,7 @@
 			{imagepng($thumbnail,$target_dir."thumbs/thumb_".basename($source));}
 		else
 			{imagejpeg($thumbnail,$target_dir."thumbs/thumb_".basename($source));}
-		
+		echo "No się udało";
 		$watermarked = imagecreatetruecolor($width, $height);
 		imagecopyresized($watermarked, $fsource, 0, 0, 0, 0, $width, $height, $width, $height);
 		$color = imagecolorallocatealpha($watermarked, 117, 117, 117);
@@ -143,6 +145,7 @@
 		unset($fsource);
 		unset($thumbnail);
 		unset($watermarked);
+		echo "No się udało";
 	}
 ?>
 </body>

@@ -90,4 +90,35 @@ function changePermission($name, $permission_lvl) {
 		else $polaczenie->close();
 	}
 }
+
+function addImage($image){
+	require "connect.php";
+	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+	if($polaczenie->connect_errno!=0){
+        echo "Error: ".$polaczenie->connect_errno;
+    }
+    else{
+		$values="NULL, '".$image['author']."', '".$image['title']."', '".$image['source']."', '".$image['private']."', '".$image['auth']."')";
+		$sql = "INSERT INTO images (id, author, title, source, private, auth) VALUES (".$values;
+		if($rezultat = @$polaczenie->query($sql)){
+            $polaczenie->close();
+        }
+		else $polaczenie->close();
+	}
+}
+
+function deleteImage($image){
+	require "connect.php";
+	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+	if($polaczenie->connect_errno!=0){
+        echo "Error: ".$polaczenie->connect_errno;
+    }
+    else{
+		$sql = "DELETE FROM images WHERE id='".$image."'";
+		if($rezultat = @$polaczenie->query($sql)){
+            $polaczenie->close();
+        }
+		else $polaczenie->close();
+	}
+}
 ?>
