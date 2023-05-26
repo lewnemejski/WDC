@@ -1,8 +1,7 @@
 <?php
-require_once "connect.php";
 
 function db_Login(){
-
+	require_once "connect.php";
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
     if($polaczenie->connect_errno!=0){
@@ -38,7 +37,7 @@ function db_Login(){
 }
 
 function getTable($tableName){
-	
+	require_once "connect.php";
 	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
     if($polaczenie->connect_errno!=0){
@@ -50,7 +49,28 @@ function getTable($tableName){
         $sql = "SELECT * FROM ".$tableName;
         if($rezultat = @$polaczenie->query($sql)){
             $polaczenie->close();
-            return $users = $rezultat->fetch_all(MYSQLI_ASSOC);
+            return $rezultat->fetch_all(MYSQLI_ASSOC);
+        }
+		$polaczenie->close();
+	}
+}
+
+function findUser($nick){
+	require_once "connect.php";
+	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+
+    if($polaczenie->connect_errno!=0){
+        echo "Error: ".polaczenie->connect_errno;
+    }
+    else{
+        echo "Worked!";
+
+        $sql = "SELECT * FROM users where name='".$nick."'";
+        if($rezultat = @$polaczenie->query($sql)){
+            $polaczenie->close();
+			$user = $rezultat->fetch_assoc();
+			$rezultat->free_result();
+			return $user;
         }
 		$polaczenie->close();
 	}

@@ -12,17 +12,17 @@
 	{
 		$nick = $_POST['name'];
         $psw = $_POST['psw'];
-		sanitizeString($nick);
-		sanitizeString($psw);
+		//sanitizeString($nick);
+		//sanitizeString($psw);
 		$user = findUser($nick);
 		
 		if($user['name']==$_POST['name'])
 		{		
-			if (password_verify($psw, $user['psw']))
+			if (password_verify($psw, password_hash($user['password'], PASSWORD_DEFAULT)))
 			{
 				$_SESSION['zalogowany'] = true;
 				$_SESSION['user'] = $user['name'];
-								
+				$_SESSION['authorization'] = $user['role'];				
 				unset($_SESSION['blad']);
 				header('Location: test.php');
 			}

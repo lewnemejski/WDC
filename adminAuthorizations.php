@@ -1,9 +1,13 @@
 <?php
 
 session_start();
+require_once "business.php";
 
 $users = getTable("users");
-$objects = getTable("objects");
+$objects = "test";//getTable("objects");
+
+if(isset($_SESSION['user'])==false)
+	$_SESSION['authorization']=1;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($_POST['name']) {
@@ -91,17 +95,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		<div id="authorization" style="text-align:justify;">
 
-            <?php if($users->num_rows <= 1): ?>
+            <?php if(count($users) >= 1): ?>
 				<section>
 
-				  <?php if( /* poziom autoryzacji obecnie zalogowanego > 2 */ ):?>
+				  <?php if( $_SESSION['authorization'] > 2 ):?>
 					  <table>
 						<tr>
 							<th> Users </th>
 							<th> Authorization lvl </th>
 						</tr>
 						<?php foreach($users as $user): ?>
-						  <?php if($user['authorization'] < /* poziom autoryzacji obecnie zalogowanego */) ?>
+						  <?php if($user['role'] < $_SESSION['authorization']) ?>
 							<tr>
 								<td> 
                                     <form method="post">
@@ -109,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <input type="submit" value="<?php $user['name'] ?>" />
                                     </form>
 								</td>
-								<td> <?php $user['authorization'] ?>  </td>
+								<td> <?php $user['role'] ?>  </td>
 							</tr>
 						<?php endforeach ?>
 
@@ -126,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							<tr>
 								<td> <?php $object['name'] ?> </td>
 								<td> <?php $object['authorization'] ?> </td>
-                                <?php if($object['authorization'] <= /* poziom autoryzacji obecnie zalogowanego */): ?>
+                                <?php if($object['authorization'] <= $_SESSION['authorization']): ?>
 									<td> Yes </td>
 								<?php else: ?>
 									<td> No </td>
