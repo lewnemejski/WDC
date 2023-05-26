@@ -103,7 +103,7 @@ if (isset($_POST['name'])) {
 							<th> Authorization lvl </th>
 						</tr>
 						<?php foreach($users as $user): ?>
-						  <?php if($user['role'] < $_SESSION['authorization']) ?>
+						  <?php if($user['role'] < $_SESSION['authorization']): ?>
 							<tr>
 								<td> 
                                     <form method="post">
@@ -113,6 +113,7 @@ if (isset($_POST['name'])) {
 								</td>
 								<td> <?php echo $user['role']; ?>  </td>
 							</tr>
+						  <?php endif; ?>
 						<?php endforeach ?>
 
 					  </table>
