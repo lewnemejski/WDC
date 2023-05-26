@@ -43,7 +43,7 @@
 		?>
 	<?php else: ?>
 		<h3>Nie masz uprawnien do dodawania zdjec, zarejestruj się</h3>
-	<?php endif ?>
+	<?php endif; ?>
 	
 	<div id="footer">
 		<footer>

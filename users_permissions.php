@@ -7,12 +7,10 @@ $users = getTable("users");
 $objects = "test";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST["permission_lvl"])) {
+   if (isset($_POST["permission_lvl"])) {
         $selectedPermission = $_POST["permission_lvl"];
         changePermission($_SESSION['user_name'], $selectedPermission);
-    }
-}
+   }
 }
 
 ?>
