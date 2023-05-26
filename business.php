@@ -1,11 +1,7 @@
 <?php
+require_once "connect.php";
 
 function db_Login(){
-
-    $host="localhost";
-    $db_user="root";
-    $db_password="";
-    $db_name="test";
 
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
@@ -39,6 +35,25 @@ function db_Login(){
 
         $polaczenie->close();
     }
+}
+
+function getTable($tableName){
+	
+	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+
+    if($polaczenie->connect_errno!=0){
+        echo "Error: ".polaczenie->connect_errno;
+    }
+    else{
+        echo "Worked!";
+
+        $sql = "SELECT * FROM ".$tableName;
+        if($rezultat = @$polaczenie->query($sql)){
+            $polaczenie->close();
+            return $users = $rezultat->fetch_all(MYSQLI_ASSOC);
+        }
+		$polaczenie->close();
+	}
 }
 
 function changePermission($name, $permission_lvl) {

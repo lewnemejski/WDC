@@ -2,8 +2,8 @@
 
 session_start();
 
-$users = getAllUsers();
-$objects = getAllObjects();
+$users = getTable("users");
+$objects = getTable("objects");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['logout']) {
