@@ -9,15 +9,12 @@ $objects = "test";//getTable("objects");
 if(isset($_SESSION['user'])==false)
 	$_SESSION['authorization']=1;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if ($_POST['name']) {
-		$user_name = $_POST['name'];
+if (isset($_POST['name'])) {
+	$user_name = $_POST['name'];
 
-		$_SESSION['user_name'] = $user['name'];
-
-		header('Location: user_permissions.php');
-		exit;
-    }
+	$_SESSION['user_name'] = $user['name'];
+	header('Location: users_permissions.php');
+	exit();
 }
 ?>
 
@@ -110,10 +107,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<td> 
                                     <form method="post">
                                         <input id="name" type="text" value="<?php $user['name'] ?>" hidden />
-                                        <input type="submit" value="<?php $user['name'] ?>" />
+                                        <input type="submit" value="<?php echo $user['name']; ?>" />
                                     </form>
 								</td>
-								<td> <?php $user['role'] ?>  </td>
+								<td> <?php echo $user['role']; ?>  </td>
 							</tr>
 						<?php endforeach ?>
 

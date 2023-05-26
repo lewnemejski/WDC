@@ -8,7 +8,7 @@ function db_Login(){
         echo "Error: ".polaczenie->connect_errno;
     }
     else{
-        echo "Worked!";
+        //echo "Worked!";
 
         $sql = "SELECT * FROM users";
         if($rezultat = @$polaczenie->query($sql)){
@@ -44,7 +44,7 @@ function getTable($tableName){
         echo "Error: ".polaczenie->connect_errno;
     }
     else{
-        echo "Worked!";
+        //echo "Worked!";
 
         $sql = "SELECT * FROM ".$tableName;
         if($rezultat = @$polaczenie->query($sql)){

@@ -1,24 +1,27 @@
 ﻿<?php
 
 session_start();
+require_once "business.php";
 
-$users = getAllUsers();
-$objects = getAllObjects();
+$users = getTable("users");
+$objects = "test";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo <<<END
 
-        var radios = document.getElementsByName('permission_lvl');
+<script>
+    var radios = document.getElementsByName('permission_lvl');
 
-        for (var i = 0, length = radios.length; i < length; i++) {
-            if (radios[i].checked) {
-                $permission = radios[i].value;
-                changePermission($_SESSION['user_name'], $permission);
-
-                break;
-            }
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            var permission = '{$permission}';
+            var userName = '{$_SESSION['user_name']}';
+            changePermission(userName, permission);
+            break;
         }
+    }
+</script>
 
 END;
 }
@@ -129,15 +132,15 @@ END;
                         <label for="permission2">2</label>
                         <input type="radio" id="permission2" value="2" name="permission_lvl" />
 
-                        <?php if(/* poziom autoryzacji obecnego admina */ > 2) ?>
+                        <?php if($_SESSION['authorization'] > 2): ?>
                         <label for="permission3">3</label>
                         <input type="radio" id="permission3" value="3" name="permission_lvl" />
-                        <?php endif ?>
+                        <?php endif; ?>
 
-                        <?php if(/* poziom autoryzacji obecnego admina */ > 3) ?>
+                        <?php if($_SESSION['authorization'] > 3): ?>
                         <label for="permission4">4</label>
                         <input type="radio" id="permission4" value="4" name="permission_lvl" />
-                        <?php endif ?>
+                        <?php endif; ?>
 
                         <input type="submit" value="Submit"/>
 
