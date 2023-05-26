@@ -8,6 +8,10 @@ body
 	margin: 0;
 }
 
+legend {
+	padding: 0px 2px 0px 2px;
+}
+
 table, tr, td {
 	border: 2px solid lightgreen;
 }
