@@ -7,16 +7,19 @@ $users = getTable("users");
 $objects = "test";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+echo "testststst";
     echo <<<END
 
 <script>
     var radios = document.getElementsByName('permission_lvl');
-
+	document.write("mleko");
     for (var i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
-            var permission = i;
+            var permission = i+1;
+			document.write("4723742364");
             var userName = '{$_SESSION['user_name']}';
+			var element = document.getElementById("test");
+			element.innerHTML = userName;
             changePermission(userName, permission);
             break;
         }
@@ -25,7 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 END;
 }
-
+changePermission($_SESSION['user_name'], 2);
+ echo "eeeeeeee";
 ?>
 
 
@@ -77,7 +81,7 @@ END;
 
                 <div class="logo">
                     <img id="logo_motyl" src="img/motyl.png" alt="Logo strony" class="responsive" />
-                    <br />Ja�minowy ogr�dek
+                    <br /><div id="test">Ja�minowy ogr�dek</div>
                 </div>
                 <nav>
                     <div id="nav">
@@ -122,7 +126,7 @@ END;
         <div id="authorization" style="text-align:justify;">
             <section>
 
-                <forms>
+                <form method="post">
                     <fieldset>
                         <legend>Change permission</legend>
 

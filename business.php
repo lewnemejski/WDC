@@ -1,11 +1,11 @@
 <?php
 
 function db_Login(){
-	require_once "connect.php";
+	require "connect.php";
     $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
     if($polaczenie->connect_errno!=0){
-        echo "Error: ".polaczenie->connect_errno;
+        echo "Error: ".$polaczenie->connect_errno;
     }
     else{
         //echo "Worked!";
@@ -32,16 +32,16 @@ function db_Login(){
             $rezultat->free_result();
         }*/
 
-        $polaczenie->close();
+        else $polaczenie->close();
     }
 }
 
 function getTable($tableName){
-	require_once "connect.php";
+	require "connect.php";
 	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
     if($polaczenie->connect_errno!=0){
-        echo "Error: ".polaczenie->connect_errno;
+        echo "Error: ".$polaczenie->connect_errno;
     }
     else{
         //echo "Worked!";
@@ -51,19 +51,19 @@ function getTable($tableName){
             $polaczenie->close();
             return $rezultat->fetch_all(MYSQLI_ASSOC);
         }
-		$polaczenie->close();
+		else $polaczenie->close();
 	}
 }
 
 function findUser($nick){
-	require_once "connect.php";
+	require "connect.php";
 	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 
     if($polaczenie->connect_errno!=0){
-        echo "Error: ".polaczenie->connect_errno;
+        echo "Error: ".$polaczenie->connect_errno;
     }
     else{
-        echo "Worked!";
+        //echo "Worked!";
 
         $sql = "SELECT * FROM users where name='".$nick."'";
         if($rezultat = @$polaczenie->query($sql)){
@@ -72,11 +72,22 @@ function findUser($nick){
 			$rezultat->free_result();
 			return $user;
         }
-		$polaczenie->close();
+		else $polaczenie->close();
 	}
 }
 
 function changePermission($name, $permission_lvl) {
-    $sql = "UPDATE users SET role='" . $permission_lvl . "' WHERE name='" . $name . "'";
+	require "connect.php";
+	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+	if($polaczenie->connect_errno!=0){
+        echo "Error: ".$polaczenie->connect_errno;
+    }
+    else{
+		$sql = "UPDATE users SET role='" . $permission_lvl . "' WHERE name='" . $name . "'";
+		if($rezultat = @$polaczenie->query($sql)){
+            $polaczenie->close();
+        }
+		else $polaczenie->close();
+	}
 }
 ?>
