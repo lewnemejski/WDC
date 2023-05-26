@@ -6,11 +6,7 @@ $users = getTable("users");
 $objects = getTable("objects");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($_POST['logout']) {
-        session_destroy();
-        header('Location:index.php');
-    }
-	else if ($_POST['name']) {
+	if ($_POST['name']) {
 		$user_name = $_POST['name'];
 
 		$_SESSION['user_name'] = $user['name'];
