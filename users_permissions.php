@@ -6,30 +6,15 @@ require_once "business.php";
 $users = getTable("users");
 $objects = "test";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-echo "testststst";
-    echo <<<END
-
-<script>
-    var radios = document.getElementsByName('permission_lvl');
-	document.write("mleko");
-    for (var i = 0, length = radios.length; i < length; i++) {
-        if (radios[i].checked) {
-            var permission = i+1;
-			document.write("4723742364");
-            var userName = '{$_SESSION['user_name']}';
-			var element = document.getElementById("test");
-			element.innerHTML = userName;
-            changePermission(userName, permission);
-            break;
-        }
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["permission_lvl"])) {
+        $selectedPermission = $_POST["permission_lvl"];
+        changePermission($_SESSION['user_name'], $selectedPermission);
     }
-</script>
-
-END;
 }
-changePermission($_SESSION['user_name'], 2);
- echo "eeeeeeee";
+}
+
 ?>
 
 
@@ -81,7 +66,7 @@ changePermission($_SESSION['user_name'], 2);
 
                 <div class="logo">
                     <img id="logo_motyl" src="img/motyl.png" alt="Logo strony" class="responsive" />
-                    <br /><div id="test">Ja�minowy ogr�dek</div>
+                    <br />Ja�minowy ogr�dek
                 </div>
                 <nav>
                     <div id="nav">
@@ -131,7 +116,7 @@ changePermission($_SESSION['user_name'], 2);
                         <legend>Change permission</legend>
 
                         <label for="permission1">1</label>
-                        <input type="radio" id="permission1" value="1" name="permission_lvl" />
+                        <input type="radio" id="permission1" value="1" name="permission_lvl"/>
 
                         <label for="permission2">2</label>
                         <input type="radio" id="permission2" value="2" name="permission_lvl" />
@@ -149,7 +134,7 @@ changePermission($_SESSION['user_name'], 2);
                         <input type="submit" value="Submit"/>
 
                     </fieldset>
-                </forms>
+                </form>
             </section>
         </div>
 
