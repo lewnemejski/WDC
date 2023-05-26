@@ -7,7 +7,7 @@ $objects = getAllObjects();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    echo <<<END 
+    echo <<<END
 
         var radios = document.getElementsByName('permission_lvl');
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-    END;
+END;
 }
 
 ?>
