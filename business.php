@@ -107,7 +107,7 @@ function addImage($image){
 	}
 }
 
-function deleteImage($image){
+function deleteImage($image, $path){
 	require "connect.php";
 	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
 	if($polaczenie->connect_errno!=0){
@@ -115,10 +115,21 @@ function deleteImage($image){
     }
     else{
 		$sql = "DELETE FROM images WHERE id='".$image."'";
+		$filePath="uploads/".$path;
+		if (file_exists($filePath)) {
+			if (unlink($filePath)) {
+				//echo "File deleted successfully.";
+			} else {
+				//echo "Unable to delete the file.";
+			}
+		} else {
+			//echo "File does not exist.";
+		}
 		if($rezultat = @$polaczenie->query($sql)){
             $polaczenie->close();
         }
 		else $polaczenie->close();
 	}
+	
 }
 ?>

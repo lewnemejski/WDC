@@ -40,11 +40,14 @@
 		<?php 
 			if (isLogged())
 			{
-				echo "Twoja nazwa użytkownika:<span style='font-weight:bold;'>".$_SESSION['user']."</span><br/> <a style='text-decoration:none; color:#ff1744; font-size: 20px;' href='logout.php' > Wyloguj się </a>";
+				echo "Twoja nazwa użytkownika:<span style='font-weight:bold;'> ".$_SESSION['user']."</span><br/> <a style='text-decoration:none; color:#ff1744; font-size: 20px;' href='logout.php' > Wyloguj się </a>";
+				if($_SESSION['authorization']>2){
+					echo "<br/><br/> <a style='text-decoration:none; color:#ff1744; font-size: 20px;' href='adminAuthorizations.php' > Edycja Uprawnien </a>";
+				}
 			}
 		?>
 	<?php else: ?>
-		<h3>Nie masz uprawnien do dodawania zdjec, zarejestruj się</h3>
+		<h3>Nie masz uprawnien do dodawania zdjec, zarejestruj się lub jesli jestes zalogowany skontaktuj sie z administratorem</h3>
 	<?php endif; ?>
 	
 	<div id="footer">
