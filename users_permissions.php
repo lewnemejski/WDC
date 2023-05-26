@@ -124,11 +124,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input type="radio" id="permission3" value="3" name="permission_lvl" />
                         <?php endif; ?>
 
-                        <?php if($_SESSION['authorization'] > 3): ?>
-                        <label for="permission4">4</label>
-                        <input type="radio" id="permission4" value="4" name="permission_lvl" />
-                        <?php endif; ?>
-
                         <input type="submit" value="Submit"/>
 
                     </fieldset>
