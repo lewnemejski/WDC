@@ -8,13 +8,14 @@ $objects = "test";//getTable("objects");
 
 if(isset($_SESSION['user'])==false)
 	$_SESSION['authorization']=1;
-
+if(isset($_SESSION['user_name']))
+	echo $_SESSION['user_name'];
 if (isset($_POST['name'])) {
-	$user_name = $_POST['name'];
-
-	$_SESSION['user_name'] = $user['name'];
+	
+	$_SESSION['user_name'] = $_POST['name'];
+	
 	header('Location: users_permissions.php');
-	exit();
+	exit;
 }
 ?>
 
@@ -106,8 +107,8 @@ if (isset($_POST['name'])) {
 							<tr>
 								<td> 
                                     <form method="post">
-                                        <input id="name" type="text" value="<?php $user['name'] ?>" hidden />
-                                        <input type="submit" value="<?php echo $user['name']; ?>" />
+                                        <input id="name" type="text" value="<?php echo $user['name']; ?>" hidden name="name"/>
+                                        <input type="submit" value="<?php echo $user['name']; ?>" name="submit" />
                                     </form>
 								</td>
 								<td> <?php echo $user['role']; ?>  </td>

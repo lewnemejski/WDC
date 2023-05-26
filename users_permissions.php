@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     for (var i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
-            var permission = '{$permission}';
+            var permission = i;
             var userName = '{$_SESSION['user_name']}';
             changePermission(userName, permission);
             break;
