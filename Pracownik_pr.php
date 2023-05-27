@@ -1,40 +1,13 @@
 <?php
-
 session_start();
-require_once "business.php";
 
-if(!(isset($_SESSION['employee']) && $_SESSION['employee'] == true))
-{
-	header('Location: index.php');
-	exit();
-}
+require "page.php";
+require_once 'business.php';
 
-if((isset($_SESSION['user_name']))==false)
-{
-	header('Location: adminAuthorizations.php');
-	exit();
-}
-
-$users = getTable("users");
-$objects = getTable("objects");
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-   if(isset($_POST["submit"])){
-        $selectedPermission = 0;
-		
-        if (isset($_POST["add"])) 
-            $selectedPermission += $_POST["add"];
-        if (isset($_POST["del"])) 
-            $selectedPermission += $_POST["del"];
-        if (isset($_POST["del_yours"])) 
-            $selectedPermission += $_POST["del_yours"];
-        
-        changePermission($_SESSION['user_name'], $selectedPermission);
-   }
-}
+if ($_SESSION['employee'] != true)
+    header("Location: index.php");
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -42,10 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
 
     <meta charset="utf-8" />
-    <title>Jaï¿½minowy ogrï¿½dek</title>
-    <meta name="description" content="Strona poï¿½wiï¿½cona kwiatom i motylom." />
+    <title>Jaœminowy ogródek</title>
+    <meta name="description" content="Strona poœwiêcona kwiatom i motylom." />
     <meta name="keywords" content="" />
-    <meta name="author" content="s189477, s191687" />
+    <meta name="author" content="s189477" />
 
     <meta http-equiv="X-Ua-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -74,6 +47,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     </noscript>
 
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            }
+          });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -84,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <div class="logo">
                     <img id="logo_motyl" src="img/motyl.png" alt="Logo strony" class="responsive" />
-                    <br />Jaï¿½minowy ogrï¿½dek
+                    <br />Jaœminowy ogródek
                 </div>
                 <nav>
                     <div id="nav">
@@ -98,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <a href="galery.php">Galeria</a>
                             </li>
                             <li>
-                                <a href="Pracownik_pr.php">Ogrï¿½dek</a>
+                                <a href="Pracownik_pr.php">Ogródek</a>
                             </li>
                             <li>
                                 <a href="contact.php">Kontakt</a>
@@ -118,37 +108,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </nav>
                 <div class="noscript">
                     <i class="fas fa-exclamation-triangle"></i><p>
-                        Strona wymaga do poprawnego dziaï¿½ania wï¿½ï¿½czonego JS.	Wï¿½ï¿½cz w przeglï¿½darce JS oraz/albo wyï¿½ï¿½cz dodatki blokujï¿½ce JS, a nastï¿½pnie odï¿½wieï¿½ witrynï¿½.
+                        Strona wymaga do poprawnego dzia³ania w³¹czonego JS.	W³¹cz w przegl¹darce JS oraz/albo wy³¹cz dodatki blokuj¹ce JS, a nastêpnie odœwie¿ witrynê.
                         <br />
-                        <span>Dziï¿½kujemy za zrozumienie i ï¿½yczymy miï¿½ego korzystania z serwisu.</span><br />
+                        <span>Dziêkujemy za zrozumienie i ¿yczymy mi³ego korzystania z serwisu.</span><br />
                 </div>
 
             </header>
         </div>
 
-        <div id="authorization" style="text-align:justify;">
-            <section>
+        <?php if($_SESSION('employeeName') == "noob"): ?>
+            <div id="content" style="text-align:justify;">
 
-                <form method="post">
-                    <fieldset>
-                        <legend>Zmiana uprawnien</legend>
+                <button type="button" class="collapsible">Open Collapsible</button>
+                <section class="content">
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            <legend> Wyslij rozwiazanie </legend>
+                            <input type="file" name="fileToUpload" id="fileToUpload" />
+                            <input type="submit" value="Upload Image" name="submit" />
+                        </fieldset>
+                    </form>
+                </section>
 
-                        <label for="permission1">Dodawanie zdjec</label>
-                        <input type="checkbox" id="permission1" value="1" name="add" />
+            </div>
+        <?php endif; ?>
 
-                        <label for="permission2">Usuwanie zdjec</label>
-                        <input type="checkbox" id="permission2" value="3" name="del" />
-
-                        <label for="permission3">Usuwanie swoich zdjec</label>
-                        <input type="checkbox" id="permission3" value="5" name="del_yours" />
-
-                        <input type="submit" value="Submit" name="submit"/>
-
-                    </fieldset>
-                </form>
-            </section>
-        </div>
-		<h3 style="text-align:center"><a href="relocate.php">PowrÃ³t</a></h3>
         <div id="footer">
             <footer>
                 Copyright &copy; Kacper Wszeborowski s189477
@@ -159,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <script>
 		document.addEventListener("DOMContentLoaded", function() {
-            tryb(); navi();
+		  tryb(); navi();
 		});
     </script>
 
