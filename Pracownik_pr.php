@@ -138,8 +138,19 @@ if (isset($_POST["submit"])) {
             </header>
         </div>
 
+
         <?php if($_SESSION['employeeName'] == "noob"): ?>
             <div id="content" style="text-align:justify;">
+
+                <button type="button" class="collapsible">Zadania</button>
+                <section class="content">
+                    <?php foreach ($files as $file): ?>
+                        <?php if( $file['who']=="prezes" ): ?>
+                            <a href="<?php echo $file['source'];?>"> <?php echo $file['name']; ?> - Pobierz Zadanie</a>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </section>
+
 
                 <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
@@ -173,33 +184,31 @@ if (isset($_POST["submit"])) {
                 <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
                     <?php foreach ($files as $file): ?>
-                        <?php if( $file['who']=="prezes" ): ?>
-                            <a href="<?php echo $file['source'];?>">A</a>
+                        <?php if( $file['who']=="noob" ): ?>
+                            <a href="<?php echo $file['source'];?>"><?php echo $file['name']; ?> - Pobierz Rozwiazanie</a>
                         <?php endif ?>
                     <?php endforeach ?>
                 </section>
 
-
-
             </div>
         <?php endif; ?>
 
-<script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
+        <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
-</script>
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            } 
+          });
+        }
+        </script>
 		
         <div id="footer">
             <footer>
