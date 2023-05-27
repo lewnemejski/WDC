@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 session_start();
 require_once "business.php";
@@ -123,18 +123,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <form method="post">
                     <fieldset>
-                        <legend>Change permission</legend>
+                        <legend>Zmiana uprawnien</legend>
 
-                        <label for="permission1">1</label>
-                        <input type="radio" id="permission1" value="1" name="permission_lvl"/>
+                        <label for="permission1">Dodawanie zdjec</label>
+                        <input type="checkbox" id="permission1" value="1" name="permission_lvl" />
 
-                        <label for="permission2">2</label>
-                        <input type="radio" id="permission2" value="2" name="permission_lvl" />
+                        <label for="permission2">Usuwanie zdjec</label>
+                        <input type="checkbox" id="permission2" value="2" name="permission_lvl" />
 
-                        <?php if($_SESSION['authorization'] > 2): ?>
-                        <label for="permission3">3</label>
-                        <input type="radio" id="permission3" value="3" name="permission_lvl" />
-                        <?php endif; ?>
+                        <label for="permission3">Usuwanie swoich zdjec</label>
+                        <input type="checkbox" id="permission3" value="3" name="permission_lvl" />
 
                         <input type="submit" value="Submit"/>
 
