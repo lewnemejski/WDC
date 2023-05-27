@@ -160,7 +160,7 @@ if ($_SESSION['employee'] != true)
                     </form>
                 </section>
 
-                <button type="button" class="collapsible">Rozwiazania</button>
+                <button type="button" class="collapsible">Kalkulator</button>
                 <section class="content">
                     <table id="calcu">
                         <tr>
@@ -249,7 +249,7 @@ if ($_SESSION['employee'] != true)
                         </tr>
                     </table>
                 </section>
-</div>
+            </div>
         <?php endif; ?>
 
         <?php if ($_SESSION['employeeName'] == "prezes"): ?>
