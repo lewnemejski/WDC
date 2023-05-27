@@ -8,18 +8,6 @@ $files=getTable("documents");
 if ($_SESSION['employee'] != true)
     header("Location: index.php");
 
-if (isset($_POST["submit"])) {
-    if (isset($_FILES["answer"])) {
-        $file = $_FILES["answer"];
-
-    } else if (isset($_FILES["question"])) {
-        $file = $_FILES["question"];
-
-    } else {
-        header("Location: Pracownik_pr.php");
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -146,7 +134,7 @@ if (isset($_POST["submit"])) {
                 <section class="content">
                     <?php foreach ($files as $file): ?>
                         <?php if( $file['who']=="prezes" ): ?>
-                            <a href="<?php echo $file['source'];?>"> <?php echo $file['name']; ?> - Pobierz Zadanie</a>
+                            <a href="<?php echo $file['source'];?>" target="_blank"> <?php echo $file['name']; ?> - Pobierz Zadanie</a>
                         <?php endif ?>
                     <?php endforeach ?>
                 </section>
@@ -185,7 +173,7 @@ if (isset($_POST["submit"])) {
                 <section class="content">
                     <?php foreach ($files as $file): ?>
                         <?php if( $file['who']=="noob" ): ?>
-                            <a href="<?php echo $file['source'];?>"><?php echo $file['name']; ?> - Pobierz Rozwiazanie</a>
+                            <a href="<?php echo $file['source'];?>" target="_blank"><?php echo $file['name']; ?> - Pobierz Rozwiazanie</a>
                         <?php endif ?>
                     <?php endforeach ?>
                 </section>
