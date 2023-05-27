@@ -10,27 +10,34 @@ require_once "business.php";
 if (isset($_POST['name'])) {
     $nick = $_POST['name'];
     $psw = $_POST['psw'];
-    $employee_id = $_POST['id'];
     //sanitizeString($nick);
     //sanitizeString($psw);
     $user = findUser($nick);
-    //echo "MELKEKEK".$user['name'];
-    if (isset($user['name']) && $user['name'] == $_POST['name']) {
-        if (password_verify($psw, password_hash($user['password'], PASSWORD_DEFAULT))) {
-            $_SESSION['zalogowany'] = true;
-            $_SESSION['user'] = $user['name'];
-            $_SESSION['authorization'] = $user['role'];
-            $_SESSION['employee'] = $user['employee'];
-            unset($_SESSION['blad']);
-            header('Location: test.php');
-        } else {
-            $_SESSION['blad'] = '<span style="color:red">Nieprawid這we has這!</span>';
-            //header('Location: login.php');
-        }
-    } else {
-        $_SESSION['blad'] = '<span style="color:red">Nieprawid這wa nazwa!</span>';
-        //header('Location: login.php');
-    }
+	if(isset($user['name']) && $user['employee']==true){
+		$test=substr($user['name'],0,2);
+		if (isset($user['name']) && $user['name'] == $_POST['name'] && $_POST['employee_id']==$test) {
+			if (password_verify($psw, password_hash($user['password'], PASSWORD_DEFAULT))) {
+				$_SESSION['zalogowany'] = true;
+				$_SESSION['user'] = $user['name'];
+				$_SESSION['authorization'] = $user['role'];
+				$_SESSION['employee'] = $user['employee'];
+				unset($_SESSION['blad']);
+				header('Location: test.php');
+			} else {
+				$_SESSION['blad'] = '<span style="color:red">Nieprawid這we has這!</span>';
+				//header('Location: login.php');
+			}
+		} else {
+			$_SESSION['blad'] = '<span style="color:red">Nieprawidlowa nazwa lub id!</span>';
+			//header('Location: login.php');
+		}
+	}
+	else if(isset($user['name']) && $user['employee']==false){
+		$_SESSION['blad'] = '<span style="color:red">Nie jestes pracownikiem! <a href="login.php">Logowanie dla uzytkownikow</a></span>';
+	}
+	else{
+		$_SESSION['blad'] = '<span style="color:red">Nieprawidlowe dane logowania!</span>';
+	}
 } else
     unset($_SESSION['blad']);
 
