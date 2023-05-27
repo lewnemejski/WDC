@@ -3,8 +3,22 @@ session_start();
 
 require_once 'business.php';
 
+$files=getTable("documents");
+
 if ($_SESSION['employee'] != true)
     header("Location: index.php");
+
+if (isset($_POST["submit"])) {
+    if (isset($_FILES["answer"])) {
+        $file = $_FILES["answer"];
+
+    } else if (isset($_FILES["question"])) {
+        $file = $_FILES["question"];
+
+    } else {
+        header("Location: Pracownik_pr.php");
+    }
+}
 
 ?>
 
@@ -127,22 +141,12 @@ if ($_SESSION['employee'] != true)
         <?php if($_SESSION['employeeName'] == "noob"): ?>
             <div id="content" style="text-align:justify;">
 
-                <button type="button" class="collapsible">Zadania</button>
-                <section class="content">
-                    <?php foreach(/* pliki przeslane */): ?>
-                        <?php if (/* pliki prezesa */) ?>
-                            <p>Imie pliku</p>
-                            <a href=""> Pobierz Plik </a>
-                        <?php endif; ?>
-                    <?php ?>
-                </section>
-
                 <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="uploadDoc.php" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <legend> Wyslij rozwiazanie </legend>
-                            <input type="file" name="answer" id="fileToUpload" accept=".zip, .rar, .pdf" required />
+                            <input type="file" name="fileToUpload" id="answer" accept=".zip, .rar, .pdf" required />
                             <input type="text" name="comment" id="comment" />
                             <input type="submit" value="Upload file" name="submit" />
                         </fieldset>
@@ -157,10 +161,10 @@ if ($_SESSION['employee'] != true)
 
                 <button type="button" class="collapsible">Zlecenie</button>
                 <section class="content">
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="uploadDoc.php" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <legend> Wyslij zlecenie </legend>
-                            <input type="file" name="question" id="fileToUpload" accept=".zip, .rar, .pdf" required />
+                            <input type="file" name="fileToUpload" id="question" accept=".zip, .rar, .pdf" required />
                             <input type="submit" value="Upload file" name="submit" />
                         </fieldset>
                     </form>
@@ -168,10 +172,9 @@ if ($_SESSION['employee'] != true)
 
                 <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
-                    <?php foreach (/* pliki przeslane */): ?>
-                        <?php if( /* plik pracownika */ ): ?>
-                            <p>Imie pliku - Komentarz przeslany</p>
-                            <a href=""> Pobierz Plik </a>
+                    <?php foreach ($files as $file): ?>
+                        <?php if( $file['who']=="prezes" ): ?>
+                            <a href="<?php echo $file['source'];?>">A</a>
                         <?php endif ?>
                     <?php endforeach ?>
                 </section>
@@ -181,22 +184,22 @@ if ($_SESSION['employee'] != true)
             </div>
         <?php endif; ?>
 
-        <script>
-            var coll = document.getElementsByClassName("collapsible");
-            var i;
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
 
-            for (i = 0; i < coll.length; i++) {
-              coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.maxHeight){
-                  content.style.maxHeight = null;
-                } else {
-                  content.style.maxHeight = content.scrollHeight + "px";
-                } 
-              });
-            }
-        </script>
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
 		
         <div id="footer">
             <footer>
