@@ -6,6 +6,18 @@ require_once 'business.php';
 if ($_SESSION['employee'] != true)
     header("Location: index.php");
 
+if (isset($_POST["submit"])) {
+    if (isset($_FILES["answer"])) {
+        $file = $_FILES["answer"];
+
+    } else if (isset($_FILES["question"])) {
+        $file = $_FILES["question"];
+
+    } else {
+        header("Location: Pracownik_pr.php");
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +26,8 @@ if ($_SESSION['employee'] != true)
 <head>
 
     <meta charset="utf-8" />
-    <title>Jaœminowy ogródek</title>
-    <meta name="description" content="Strona poœwiêcona kwiatom i motylom." />
+    <title>Jaï¿½minowy ogrï¿½dek</title>
+    <meta name="description" content="Strona poï¿½wiï¿½cona kwiatom i motylom." />
     <meta name="keywords" content="" />
     <meta name="author" content="s189477" />
 
@@ -82,7 +94,7 @@ if ($_SESSION['employee'] != true)
 
                 <div class="logo">
                     <img id="logo_motyl" src="img/motyl.png" alt="Logo strony" class="responsive" />
-                    <br />Jaœminowy ogródek
+                    <br />Jaï¿½minowy ogrï¿½dek
                 </div>
                 <nav>
                     <div id="nav">
@@ -96,7 +108,7 @@ if ($_SESSION['employee'] != true)
                                 <a href="galery.php">Galeria</a>
                             </li>
                             <li>
-                                <a href="Pracownik_pr.php">Ogródek</a>
+                                <a href="Pracownik_pr.php">Stanowisko</a>
                             </li>
                             <li>
                                 <a href="contact.php">Kontakt</a>
@@ -116,9 +128,9 @@ if ($_SESSION['employee'] != true)
                 </nav>
                 <div class="noscript">
                     <i class="fas fa-exclamation-triangle"></i><p>
-                        Strona wymaga do poprawnego dzia³ania w³¹czonego JS.	W³¹cz w przegl¹darce JS oraz/albo wy³¹cz dodatki blokuj¹ce JS, a nastêpnie odœwie¿ witrynê.
+                        Strona wymaga do poprawnego dziaï¿½ania wï¿½ï¿½czonego JS.	Wï¿½ï¿½cz w przeglï¿½darce JS oraz/albo wyï¿½ï¿½cz dodatki blokujï¿½ce JS, a nastï¿½pnie odï¿½wieï¿½ witrynï¿½.
                         <br />
-                        <span>Dziêkujemy za zrozumienie i ¿yczymy mi³ego korzystania z serwisu.</span><br />
+                        <span>Dziï¿½kujemy za zrozumienie i ï¿½yczymy miï¿½ego korzystania z serwisu.</span><br />
                 </div>
 
             </header>
@@ -127,19 +139,49 @@ if ($_SESSION['employee'] != true)
         <?php if($_SESSION['employeeName'] == "noob"): ?>
             <div id="content" style="text-align:justify;">
 
-                <button type="button" class="collapsible">Open Collapsible</button>
+                <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data">
                         <fieldset>
                             <legend> Wyslij rozwiazanie </legend>
-                            <input type="file" name="fileToUpload" id="fileToUpload" />
-                            <input type="submit" value="Upload Image" name="submit" />
+                            <input type="file" name="answer" id="fileToUpload" accept=".zip, .rar, .pdf" required />
+                            <input type="text" name="comment" id="comment" />
+                            <input type="submit" value="Upload file" name="submit" />
                         </fieldset>
                     </form>
                 </section>
 				
             </div>
         <?php endif; ?>
+
+        <?php if ($_SESSION['employeeName'] == "prezes"): ?>
+            <div id="content" style="text-align:justify;">
+
+                <button type="button" class="collapsible">Zlecenie</button>
+                <section class="content">
+                    <form method="post" enctype="multipart/form-data">
+                        <fieldset>
+                            <legend> Wyslij zlecenie </legend>
+                            <input type="file" name="question" id="fileToUpload" accept=".zip, .rar, .pdf" required />
+                            <input type="submit" value="Upload file" name="submit" />
+                        </fieldset>
+                    </form>
+                </section>
+
+                <button type="button" class="collapsible">Rozwiazania</button>
+                <section class="content">
+                    <?php foreach (/* pliki przeslane */): ?>
+                        <?php if( /* plik pracownika */ ): ?>
+                            <a href=""></a>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </section>
+
+
+
+            </div>
+        <?php endif; ?>
+
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

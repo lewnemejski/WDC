@@ -61,7 +61,7 @@
 									<li><a href="usergalery.php">Użytkowników</a></li>
 								</ul>
 							</li>
-							<li><a href="garden.php">Ogródek</a></li>
+							<li><a href="garden.php">Stanowisko</a></li>
 							<li><a href="contact.php">Kontakt</a></li>
 							<li><a href="#" role="button" onClick="dark()"><i id="sun" class="fas fa-moon"></i></a></li>
 						</ol>	

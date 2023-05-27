@@ -24,11 +24,11 @@ if (isset($_POST['name'])) {
             unset($_SESSION['blad']);
             header('Location: test.php');
         } else {
-            $_SESSION['blad'] = '<span style="color:red">Nieprawid³owe has³o!</span>';
+            $_SESSION['blad'] = '<span style="color:red">Nieprawidï¿½owe hasï¿½o!</span>';
             //header('Location: login.php');
         }
     } else {
-        $_SESSION['blad'] = '<span style="color:red">Nieprawid³owa nazwa!</span>';
+        $_SESSION['blad'] = '<span style="color:red">Nieprawidï¿½owa nazwa!</span>';
         //header('Location: login.php');
     }
 } else
@@ -41,8 +41,8 @@ if (isset($_POST['name'])) {
 <head>
 
     <meta charset="utf-8" />
-    <title>Jaœminowy ogródek</title>
-    <meta name="description" content="Strona poœwiêcona kwiatom i motylom." />
+    <title>Jaï¿½minowy ogrï¿½dek</title>
+    <meta name="description" content="Strona poï¿½wiï¿½cona kwiatom i motylom." />
     <meta name="keywords" content="" />
     <meta name="author" content="s189477" />
 
@@ -88,7 +88,7 @@ if (isset($_POST['name'])) {
 
                 <div class="logo">
                     <img id="logo_motyl" src="img/motyl.png" alt="Logo strony" class="responsive" />
-                    <br />Jaœminowy ogródek
+                    <br />Jaï¿½minowy ogrï¿½dek
                 </div>
                 <nav>
                     <div id="nav">
@@ -102,7 +102,7 @@ if (isset($_POST['name'])) {
                                 <a href="galery.php">Galeria</a>
                             </li>
                             <li>
-                                <a href="garden.php">Ogródek</a>
+                                <a href="garden.php">Ogrï¿½dek</a>
                             </li>
                             <li>
                                 <a href="contact.php">Kontakt</a>
@@ -122,9 +122,9 @@ if (isset($_POST['name'])) {
                 </nav>
                 <div class="noscript">
                     <i class="fas fa-exclamation-triangle"></i><p>
-                        Strona wymaga do poprawnego dzia³ania w³¹czonego JS.	W³¹cz w przegl¹darce JS oraz/albo wy³¹cz dodatki blokuj¹ce JS, a nastêpnie odœwie¿ witrynê.
+                        Strona wymaga do poprawnego dziaï¿½ania wï¿½ï¿½czonego JS.	Wï¿½ï¿½cz w przeglï¿½darce JS oraz/albo wyï¿½ï¿½cz dodatki blokujï¿½ce JS, a nastï¿½pnie odï¿½wieï¿½ witrynï¿½.
                         <br />
-                        <span>Dziêkujemy za zrozumienie i ¿yczymy mi³ego korzystania z serwisu.</span><br />
+                        <span>Dziï¿½kujemy za zrozumienie i ï¿½yczymy miï¿½ego korzystania z serwisu.</span><br />
                 </div>
 
             </header>
@@ -134,17 +134,17 @@ if (isset($_POST['name'])) {
             
             <section id="authorization">
                 <ol id="login">
-                    <li><a href="login.php"> Zaloguj sie jako u¿ytkownik </a></li>
-                    <li><a href="login_employees.php"> Zaloguj siê jako pracownik </a></li>
+                    <li><a href="login.php"> Zaloguj sie jako uï¿½ytkownik </a></li>
+                    <li><a href="login_employees.php"> Zaloguj siï¿½ jako pracownik </a></li>
                 </ol>
             </section>
 
             <br />
             <span>
-                Nie masz jeszcze konta? <a href="register.php" style="text-decoration:none; color:#ff1744;">Zarejestruj siê</a>
+                Nie masz jeszcze konta? <a href="register.php" style="text-decoration:none; color:#ff1744;">Zarejestruj siï¿½</a>
             </span>
             <span>
-                Chcesz wys³aæ zdjêcie jako goœæ? <a href="test.php" style="text-decoration:none; color:#ff1744;">Kliknij</a>
+                Chcesz wysï¿½aï¿½ zdjï¿½cie jako goï¿½ï¿½? <a href="test.php" style="text-decoration:none; color:#ff1744;">Kliknij</a>
             </span>
 
 

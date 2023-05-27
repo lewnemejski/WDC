@@ -74,7 +74,7 @@ if (isset($_POST['name'])) {
 					<ol>
 						<li><a href="index.php"><i class="fas fa-home"></i></a></li>
 						<li><a href="galery.php">Galeria</a></li>
-						<li><a href="Pracownik_pr.php">Ogr�dek</a></li>
+						<li><a href="Pracownik_pr.php">Stanowisko</a></li>
 						<li><a href="contact.php">Kontakt</a></li>
 						<li><a href="login_choice.php" role="button"><i class="fas fa-user"></i></a></li>
 						<li><a href="#" role="button" onClick="dark()"><i id="sun" class="fas fa-moon"></i></a></li>
