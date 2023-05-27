@@ -20,7 +20,16 @@ $objects = getTable("objects");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
    if (isset($_POST["permission_lvl"])) {
-        $selectedPermission = $_POST["permission_lvl"];
+        $selectedPermission == 0;
+
+        if ($_POST["add"]) {
+            $selectedPermission += $_POST["add"];
+        } else if ($_POST["del"]) {
+            $selectedPermission += $_POST["del"];
+        } else if ($_POST["del_yours"]) {
+            $selectedPermission += $_POST["del_yours"];
+        }
+
         changePermission($_SESSION['user_name'], $selectedPermission);
    }
 }
@@ -126,13 +135,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <legend>Zmiana uprawnien</legend>
 
                         <label for="permission1">Dodawanie zdjec</label>
-                        <input type="checkbox" id="permission1" value="1" name="permission_lvl" />
+                        <input type="checkbox" id="permission1" value="1" name="add" />
 
                         <label for="permission2">Usuwanie zdjec</label>
-                        <input type="checkbox" id="permission2" value="3" name="permission_lvl" />
+                        <input type="checkbox" id="permission2" value="3" name="del" />
 
                         <label for="permission3">Usuwanie swoich zdjec</label>
-                        <input type="checkbox" id="permission3" value="5" name="permission_lvl" />
+                        <input type="checkbox" id="permission3" value="5" name="del_yours" />
 
                         <input type="submit" value="Submit"/>
 
