@@ -9,6 +9,12 @@ if(!(isset($_SESSION['employee']) && $_SESSION['employee'] == true))
 	exit();
 }
 
+if((isset($_SESSION['user_name']))==false)
+{
+	header('Location: adminAuthorizations.php');
+	exit();
+}
+
 $users = getTable("users");
 $objects = getTable("objects");
 
@@ -136,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </form>
             </section>
         </div>
-
+		<h3 style="text-align:center"><a href="relocate.php">Powrót</a></h3>
         <div id="footer">
             <footer>
                 Copyright &copy; Kacper Wszeborowski s189477

@@ -8,8 +8,7 @@ $objects = getTable("objects");
 
 if(isset($_SESSION['user'])==false)
 	$_SESSION['authorization']=1;
-if(isset($_SESSION['user_name']))
-	echo $_SESSION['user_name'];
+
 if (isset($_POST['name'])) {
 	
 	$_SESSION['user_name'] = $_POST['name'];
