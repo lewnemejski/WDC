@@ -173,12 +173,14 @@ table {
 	line-height: 250%;
 	display: inline-block;
 }
+
 #nav > ol a
 {
 	text-decoration: none;
 	display: block;
 	color: white;
 }
+
 #nav > ol > li:first-child
 {
 	text-align: center;

@@ -26,12 +26,13 @@
 					$number = numberOfImages();*/
 					$images=getTable("images");
 					echo '<div style="position: relative; text-align:center;">';
+					$authorization = $_SESSION['authorization'];
 					foreach($images as $image)
 					{ 
-							if($image['private']==true && $image['author']==$_SESSION['user'] || $_SESSION['authorization'] > $image['auth'])
+							if($image['private']==true && $image['author']==$_SESSION['user'] || $_SESSION['authorization'] === 10)
 							{
 								echo "<figure style='display: inline-block;'><a href='uploads/watermarks/water_".$image['source']."' target='blank'><img src='uploads/".$image['source']."'/></a><br/>";
-								echo "<figcaption>Autor: ".$image['author']."<br/>Tytuł: ".$image['title']."<br/>Prywatne: "; if($image['private']==false){echo "Nie";}else echo "Tak"; echo "<br/>"; if(($_SESSION['authorization'] == 3 && $image['auth'] < 3) || $_SESSION['authorization'] == 4){ echo "</br><form method='post'><input type='text' value='{$image['id']}' name='number' hidden/><input type='text' value='{$image['source']}' name='path' hidden/><input type='submit' value='Delete' name='submit' /></form>";} echo "</figcaption></figure>";
+								echo "<figcaption>Autor: ".$image['author']."<br/>Tytuł: ".$image['title']."<br/>Prywatne: "; if($image['private']==false){echo "Nie";}else echo "Tak"; echo "<br/>"; if((($authorization == 3 || $authorization == 4 || $authorization == 8 || $authorization == 9) && ($image['auth'] == 5 || $image['auth'] == 6 || $image['auth'] == 8 || $image['auth'] == 9)) || $authorization == 10){ echo "</br><form method='post'><input type='text' value='{$image['id']}' name='number' hidden/><input type='text' value='{$image['source']}' name='path' hidden/><input type='submit' value='Delete' name='submit' /></form>";} echo "</figcaption></figure>";
 							}
 							else if($image['private']==true)
 							{
@@ -43,7 +44,7 @@
 							else
 							{
 								echo "<figure style='display: inline-block;'><a href='uploads/watermarks/water_".$image['source']."'target='blank'><img src='uploads/".$image['source']."'/></a><br/>";
-								echo "<figcaption>Autor: ".$image['author']."<br/>Tytuł: ".$image['title']."<br/>Prywatne: Nie<br/>"; if(($_SESSION['authorization'] == 3 && $image['auth'] < 3) || $_SESSION['authorization'] == 4){ echo "</br><form method='post'><input type='text' value='{$image['id']}' name='number' hidden/><input type='text' value='{$image['source']}' name='path' hidden/><input type='submit' value='Delete' name='submit' /></form>";} echo "</figcaption></figure>";
+								echo "<figcaption>Autor: ".$image['author']."<br/>Tytuł: ".$image['title']."<br/>Prywatne: Nie<br/>"; if($authorization == 3 || $authorization == 4 || $authorization == 8 || $authorization == 9 || $authorization == 10){ echo "</br><form method='post'><input type='text' value='{$image['id']}' name='number' hidden/><input type='text' value='{$image['source']}' name='path' hidden/><input type='submit' value='Delete' name='submit' /></form>";} echo "</figcaption></figure>";
 							}
 					}
 					echo '<br/>';

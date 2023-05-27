@@ -5,7 +5,7 @@
 	if(isset($_SESSION['authorization'])==false)
 		$_SESSION['authorization'] = 1;
 ?>	
-	<?php if($_SESSION['authorization'] > 1): ?>
+	<?php $authorization = $_SESSION['authorization']; if($authorization == 1 || $authorization == 4 || $authorization == 6 || $authorization == 9 || $authorization == 10): ?>
 		<h3>Wyślij obrazek:</h3>
 		<form action="upload.php" method="post" enctype="multipart/form-data">
 	
@@ -41,7 +41,7 @@
 			if (isLogged())
 			{
 				echo "Twoja nazwa użytkownika:<span style='font-weight:bold;'> ".$_SESSION['user']."</span><br/> <a style='text-decoration:none; color:#ff1744; font-size: 20px;' href='logout.php' > Wyloguj się </a>";
-				if($_SESSION['authorization']>2){
+				if($_SESSION['authorization'] == 10){
 					echo "<br/><br/> <a style='text-decoration:none; color:#ff1744; font-size: 20px;' href='adminAuthorizations.php' > Edycja Uprawnien </a>";
 				}
 			}

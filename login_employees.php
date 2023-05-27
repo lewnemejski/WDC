@@ -24,7 +24,7 @@ if (isset($_POST['name'])) {
 				unset($_SESSION['blad']);
 				header('Location: test.php');
 			} else {
-				$_SESSION['blad'] = '<span style="color:red">Nieprawid³owe has³o!</span>';
+				$_SESSION['blad'] = '<span style="color:red">Nieprawidï¿½owe hasï¿½o!</span>';
 				//header('Location: login.php');
 			}
 		} else {
@@ -129,9 +129,9 @@ if (isset($_POST['name'])) {
                 </nav>
                 <div class="noscript">
                     <i class="fas fa-exclamation-triangle"></i><p>
-                        Strona wymaga do poprawnego dzia³ania w³¹czonego JS.	W³¹cz w przegl¹darce JS oraz/albo wy³¹cz dodatki blokuj¹ce JS, a nastêpnie odœwie¿ witrynê.
+                        Strona wymaga do poprawnego dziaï¿½ania wï¿½ï¿½czonego JS.	Wï¿½ï¿½cz w przeglï¿½darce JS oraz/albo wyï¿½ï¿½cz dodatki blokujï¿½ce JS, a nastï¿½pnie odï¿½wieï¿½ witrynï¿½.
                         <br />
-                        <span>Dziêkujemy za zrozumienie i ¿yczymy mi³ego korzystania z serwisu.</span><br />
+                        <span>Dziï¿½kujemy za zrozumienie i ï¿½yczymy miï¿½ego korzystania z serwisu.</span><br />
                 </div>
 
             </header>

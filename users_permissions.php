@@ -129,10 +129,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input type="checkbox" id="permission1" value="1" name="permission_lvl" />
 
                         <label for="permission2">Usuwanie zdjec</label>
-                        <input type="checkbox" id="permission2" value="2" name="permission_lvl" />
+                        <input type="checkbox" id="permission2" value="3" name="permission_lvl" />
 
                         <label for="permission3">Usuwanie swoich zdjec</label>
-                        <input type="checkbox" id="permission3" value="3" name="permission_lvl" />
+                        <input type="checkbox" id="permission3" value="5" name="permission_lvl" />
 
                         <input type="submit" value="Submit"/>
 
