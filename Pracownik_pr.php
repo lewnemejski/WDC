@@ -9,6 +9,7 @@ if ($_SESSION['employee'] != true)
 if (isset($_POST["submit"])) {
     if (isset($_FILES["answer"])) {
         $file = $_FILES["answer"];
+        $comment = $_POST["comment"];
 
     } else if (isset($_FILES["question"])) {
         $file = $_FILES["question"];
@@ -139,6 +140,16 @@ if (isset($_POST["submit"])) {
         <?php if($_SESSION['employeeName'] == "noob"): ?>
             <div id="content" style="text-align:justify;">
 
+                <button type="button" class="collapsible">Zadania</button>
+                <section class="content">
+                    <?php foreach(/* pliki przeslane */): ?>
+                        <?php if (/* pliki prezesa */) ?>
+                            <p>Imie pliku</p>
+                            <a href=""></a>
+                        <?php endif; ?>
+                    <?php ?>
+                </section>
+
                 <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
                     <form method="post" enctype="multipart/form-data">
@@ -172,6 +183,7 @@ if (isset($_POST["submit"])) {
                 <section class="content">
                     <?php foreach (/* pliki przeslane */): ?>
                         <?php if( /* plik pracownika */ ): ?>
+                            <p>Imie pliku - Komentarz przeslany</p>
                             <a href=""></a>
                         <?php endif ?>
                     <?php endforeach ?>
