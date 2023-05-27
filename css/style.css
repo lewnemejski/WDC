@@ -145,6 +145,12 @@ table {
 	display: inline-block;
 	width: 40%;
 	margin: 0px 30% 0px 30%;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	height: 50px;
+	line-height: 250%;
+	display: inline-block;
 }
 
 #login > li {
