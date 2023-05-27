@@ -3,6 +3,8 @@ session_start();
 
 require_once 'business.php';
 
+$files=getTable("documents");
+
 if ($_SESSION['employee'] != true)
     header("Location: index.php");
 
@@ -141,10 +143,10 @@ if (isset($_POST["submit"])) {
 
                 <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="uploadDoc.php" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <legend> Wyslij rozwiazanie </legend>
-                            <input type="file" name="answer" id="fileToUpload" accept=".zip, .rar, .pdf" required />
+                            <input type="file" name="fileToUpload" id="answer" accept=".zip, .rar, .pdf" required />
                             <input type="text" name="comment" id="comment" />
                             <input type="submit" value="Upload file" name="submit" />
                         </fieldset>
@@ -159,10 +161,10 @@ if (isset($_POST["submit"])) {
 
                 <button type="button" class="collapsible">Zlecenie</button>
                 <section class="content">
-                    <form method="post" enctype="multipart/form-data">
+                    <form action="uploadDoc.php" method="post" enctype="multipart/form-data">
                         <fieldset>
                             <legend> Wyslij zlecenie </legend>
-                            <input type="file" name="question" id="fileToUpload" accept=".zip, .rar, .pdf" required />
+                            <input type="file" name="fileToUpload" id="question" accept=".zip, .rar, .pdf" required />
                             <input type="submit" value="Upload file" name="submit" />
                         </fieldset>
                     </form>
@@ -170,9 +172,9 @@ if (isset($_POST["submit"])) {
 
                 <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
-                    <?php foreach (/* pliki przeslane */): ?>
-                        <?php if( /* plik pracownika */ ): ?>
-                            <a href=""></a>
+                    <?php foreach ($files as $file): ?>
+                        <?php if( $file['who']=="prezes" ): ?>
+                            <a href="<?php echo $file['source'];?>">A</a>
                         <?php endif ?>
                     <?php endforeach ?>
                 </section>

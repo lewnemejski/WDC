@@ -132,4 +132,20 @@ function deleteImage($image, $path){
 	}
 	
 }
+
+function addDoc($document){
+	require "connect.php";
+	$polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
+	if($polaczenie->connect_errno!=0){
+        echo "Error: ".$polaczenie->connect_errno;
+    }
+    else{
+		$values="NULL, '".$document['name']."', '".$document['source']."', '".$document['who']."')";
+		$sql = "INSERT INTO documents (id, name, source, who) VALUES (".$values;
+		if($rezultat = @$polaczenie->query($sql)){
+            $polaczenie->close();
+        }
+		else $polaczenie->close();
+	}
+}
 ?>
