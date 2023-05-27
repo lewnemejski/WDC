@@ -10,27 +10,34 @@ require_once "business.php";
 if (isset($_POST['name'])) {
     $nick = $_POST['name'];
     $psw = $_POST['psw'];
-    $employee_id = $_POST['id'];
     //sanitizeString($nick);
     //sanitizeString($psw);
     $user = findUser($nick);
-    //echo "MELKEKEK".$user['name'];
-    if (isset($user['name']) && $user['name'] == $_POST['name']) {
-        if (password_verify($psw, password_hash($user['password'], PASSWORD_DEFAULT))) {
-            $_SESSION['zalogowany'] = true;
-            $_SESSION['user'] = $user['name'];
-            $_SESSION['authorization'] = $user['role'];
-            $_SESSION['employee'] = $user['employee'];
-            unset($_SESSION['blad']);
-            header('Location: test.php');
-        } else {
-            $_SESSION['blad'] = '<span style="color:red">Nieprawid³owe has³o!</span>';
-            //header('Location: login.php');
-        }
-    } else {
-        $_SESSION['blad'] = '<span style="color:red">Nieprawid³owa nazwa!</span>';
-        //header('Location: login.php');
-    }
+	if(isset($user['name']) && $user['employee']==true){
+		$test=substr($user['name'],0,2);
+		if (isset($user['name']) && $user['name'] == $_POST['name'] && $_POST['employee_id']==$test) {
+			if (password_verify($psw, password_hash($user['password'], PASSWORD_DEFAULT))) {
+				$_SESSION['zalogowany'] = true;
+				$_SESSION['user'] = $user['name'];
+				$_SESSION['authorization'] = $user['role'];
+				$_SESSION['employee'] = $user['employee'];
+				unset($_SESSION['blad']);
+				header('Location: test.php');
+			} else {
+				$_SESSION['blad'] = '<span style="color:red">Nieprawid³owe has³o!</span>';
+				//header('Location: login.php');
+			}
+		} else {
+			$_SESSION['blad'] = '<span style="color:red">Nieprawidlowa nazwa lub id!</span>';
+			//header('Location: login.php');
+		}
+	}
+	else if(isset($user['name']) && $user['employee']==false){
+		$_SESSION['blad'] = '<span style="color:red">Nie jestes pracownikiem! <a href="login.php">Logowanie dla uzytkownikow</a></span>';
+	}
+	else{
+		$_SESSION['blad'] = '<span style="color:red">Nieprawidlowe dane logowania!</span>';
+	}
 } else
     unset($_SESSION['blad']);
 
@@ -41,8 +48,8 @@ if (isset($_POST['name'])) {
 <head>
 
     <meta charset="utf-8" />
-    <title>Jaœminowy ogródek</title>
-    <meta name="description" content="Strona poœwiêcona kwiatom i motylom." />
+    <title>JaÅ›minowy ogrÃ³dek</title>
+    <meta name="description" content="Strona poswiecona kwiatom i motylom." />
     <meta name="keywords" content="" />
     <meta name="author" content="s189477" />
 
@@ -88,7 +95,7 @@ if (isset($_POST['name'])) {
 
                 <div class="logo">
                     <img id="logo_motyl" src="img/motyl.png" alt="Logo strony" class="responsive" />
-                    <br />Jaœminowy ogródek
+                    <br />Jasminowy ogrodek
                 </div>
                 <nav>
                     <div id="nav">
@@ -102,7 +109,7 @@ if (isset($_POST['name'])) {
                                 <a href="galery.php">Galeria</a>
                             </li>
                             <li>
-                                <a href="garden.php">Ogródek</a>
+                                <a href="garden.php">Ogrodek</a>
                             </li>
                             <li>
                                 <a href="contact.php">Kontakt</a>
@@ -137,7 +144,7 @@ if (isset($_POST['name'])) {
                 <input type="text" id="employee_id" name="employee_id" required /><br /><br />
                 <label for="name"> Nazwa:</label><br />
                 <input type="text" id="name" name="name" required /><br />
-                <label for="psw"> Has³o:</label><br />
+                <label for="psw"> Haslo:</label><br />
                 <input type="password" id="psw" name="psw" required /><br /><br />
 
                 <?php
@@ -151,10 +158,10 @@ if (isset($_POST['name'])) {
             </form>
             <br />
             <span>
-                Nie masz jeszcze konta? <a href="register.php" style="text-decoration:none; color:#ff1744;">Zarejestruj siê</a>
+                Nie masz jeszcze konta? <a href="register.php" style="text-decoration:none; color:#ff1744;">Zarejestruj sie</a>
             </span>
             <span>
-                Chcesz wys³aæ zdjêcie jako goœæ? <a href="test.php" style="text-decoration:none; color:#ff1744;">Kliknij</a>
+                Chcesz wyslac zdjecie jako gosc? <a href="test.php" style="text-decoration:none; color:#ff1744;">Kliknij</a>
             </span>
 
 
