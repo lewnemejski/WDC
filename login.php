@@ -104,7 +104,7 @@
 						<li><a href="galery.php">Galeria</a></li>
 						<li><a href="garden.php">Ogródek</a></li>
 						<li><a href="contact.php">Kontakt</a></li>
-						<li><a href="login.php" role="button"><i class="fas fa-user"></i></a></li>
+						<li><a href="login_choice.php" role="button"><i class="fas fa-user"></i></a></li>
 						<li><a href="#" role="button" onClick="dark()"><i id="sun" class="fas fa-moon"></i></a></li>
 					</ol>
 				</div>

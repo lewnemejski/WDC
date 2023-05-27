@@ -108,7 +108,7 @@ if (isset($_POST['name'])) {
                                 <a href="contact.php">Kontakt</a>
                             </li>
                             <li>
-                                <a href="login.php" role="button">
+                                <a href="login_choice.php" role="button">
                                     <i class="fas fa-user"></i>
                                 </a>
                             </li>
