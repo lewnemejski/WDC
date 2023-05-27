@@ -6,19 +6,6 @@ require_once 'business.php';
 if ($_SESSION['employee'] != true)
     header("Location: index.php");
 
-if (isset($_POST["submit"])) {
-    if (isset($_FILES["answer"])) {
-        $file = $_FILES["answer"];
-        $comment = $_POST["comment"];
-
-    } else if (isset($_FILES["question"])) {
-        $file = $_FILES["question"];
-
-    } else {
-        header("Location: Pracownik_pr.php");
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +132,7 @@ if (isset($_POST["submit"])) {
                     <?php foreach(/* pliki przeslane */): ?>
                         <?php if (/* pliki prezesa */) ?>
                             <p>Imie pliku</p>
-                            <a href=""></a>
+                            <a href=""> Pobierz Plik </a>
                         <?php endif; ?>
                     <?php ?>
                 </section>
@@ -184,7 +171,7 @@ if (isset($_POST["submit"])) {
                     <?php foreach (/* pliki przeslane */): ?>
                         <?php if( /* plik pracownika */ ): ?>
                             <p>Imie pliku - Komentarz przeslany</p>
-                            <a href=""></a>
+                            <a href=""> Pobierz Plik </a>
                         <?php endif ?>
                     <?php endforeach ?>
                 </section>
@@ -194,22 +181,22 @@ if (isset($_POST["submit"])) {
             </div>
         <?php endif; ?>
 
-<script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
-</script>
+            for (i = 0; i < coll.length; i++) {
+              coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                  content.style.maxHeight = null;
+                } else {
+                  content.style.maxHeight = content.scrollHeight + "px";
+                } 
+              });
+            }
+        </script>
 		
         <div id="footer">
             <footer>
