@@ -19,17 +19,16 @@ $users = getTable("users");
 $objects = getTable("objects");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-   if (isset($_POST["permission_lvl"])) {
-        $selectedPermission == 0;
-
-        if ($_POST["add"]) {
+   if(isset($_POST["submit"])){
+        $selectedPermission = 0;
+		
+        if (isset($_POST["add"])) 
             $selectedPermission += $_POST["add"];
-        } else if ($_POST["del"]) {
+        if (isset($_POST["del"])) 
             $selectedPermission += $_POST["del"];
-        } else if ($_POST["del_yours"]) {
+        if (isset($_POST["del_yours"])) 
             $selectedPermission += $_POST["del_yours"];
-        }
-
+        
         changePermission($_SESSION['user_name'], $selectedPermission);
    }
 }
@@ -143,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <label for="permission3">Usuwanie swoich zdjec</label>
                         <input type="checkbox" id="permission3" value="5" name="del_yours" />
 
-                        <input type="submit" value="Submit"/>
+                        <input type="submit" value="Submit" name="submit"/>
 
                     </fieldset>
                 </form>
