@@ -133,7 +133,7 @@ if (isset($_POST['name'])) {
             <h3>Logowanie:</h3>
             <form method="post">
 
-                <label for="employee_id"> Has³o:</label><br />
+                <label for="employee_id"> Id Pracownika:</label><br />
                 <input type="text" id="employee_id" name="employee_id" required /><br /><br />
                 <label for="name"> Nazwa:</label><br />
                 <input type="text" id="name" name="name" required /><br />
