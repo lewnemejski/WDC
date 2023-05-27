@@ -141,7 +141,24 @@ table {
 	padding: 5px;
 }
 
-#nav > ol, #login
+#login {
+	display: inline-block;
+	width: 40%;
+	margin: 0px 30% 0px 30%;
+}
+
+#login > li {
+	border: 3px solid red;
+	background-color: white;
+}
+
+#login a {
+	text-decoration: none;
+	display: block;
+	color: white;
+}
+
+#nav > ol
 {
 	padding: 0;
 	margin: 0;
@@ -150,7 +167,7 @@ table {
 	line-height: 250%;
 	display: inline-block;
 }
-#nav > ol a, #login a
+#nav > ol a
 {
 	text-decoration: none;
 	display: block;
@@ -183,14 +200,14 @@ table {
 	background-color: #00897b;
 }
 
-#nav > ol > li, #login > li
+#nav > ol > li
 {
 	float: left;
 	width: 180px;
 	height: 50px;
 }
 
-#nav > ol > li:hover, #login > li:hover
+#nav > ol > li:hover
 {
 	background-color: #004c40;
 }
