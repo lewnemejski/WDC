@@ -4,7 +4,7 @@ session_start();
 require_once "business.php";
 
 $users = getTable("users");
-$objects = "test";//getTable("objects");
+$objects = getTable("objects");
 
 if(isset($_SESSION['user'])==false)
 	$_SESSION['authorization']=1;
@@ -90,7 +90,7 @@ if (isset($_POST['name'])) {
 				
 			</header>
 		</div>
-		
+		<h2 style="text-align: center">Twój poziom autoryzacji: <?php echo $_SESSION['authorization']; ?></h2>
 		<div id="authorization" style="text-align:justify;">
 
             <?php if(count($users) >= 1): ?>
@@ -101,17 +101,19 @@ if (isset($_POST['name'])) {
 						<tr>
 							<th> Users </th>
 							<th> Authorization lvl </th>
+							<th> Change lvl </th>
 						</tr>
 						<?php foreach($users as $user): ?>
 						  <?php if($user['role'] < $_SESSION['authorization']): ?>
 							<tr>
+								<td> <?php echo $user['name']; ?>	</td>
+								<td> <?php echo $user['role']; ?>  </td>
 								<td> 
                                     <form method="post">
                                         <input id="name" type="text" value="<?php echo $user['name']; ?>" hidden name="name"/>
-                                        <input type="submit" value="<?php echo $user['name']; ?>" name="submit" />
+                                        <input type="submit" value="Edytuj" name="submit" width="100%"/>
                                     </form>
 								</td>
-								<td> <?php echo $user['role']; ?>  </td>
 							</tr>
 						  <?php endif; ?>
 						<?php endforeach ?>
@@ -123,13 +125,14 @@ if (isset($_POST['name'])) {
 						<tr>
 							<th> Objects </th>
 							<th> Authorization lvl </th>
+							<th> Granted </th>
 						</tr>
 						<?php if($objects): ?>
 							<?php foreach($objects as $object): ?>
 							<tr>
-								<td> <?php $object['name'] ?> </td>
-								<td> <?php $object['authorization'] ?> </td>
-                                <?php if($object['authorization'] <= $_SESSION['authorization']): ?>
+								<td> <?php echo $object['name']; ?> </td>
+								<td> <?php echo $object['role_required']; ?> </td>
+                                <?php if($object['role_required'] <= $_SESSION['authorization']): ?>
 									<td> Yes </td>
 								<?php else: ?>
 									<td> No </td>
@@ -146,7 +149,6 @@ if (isset($_POST['name'])) {
 			<?php endif ?>
 
 		</div>
-		
 		<div id="footer">
 			<footer>
 				Copyright &copy; Kacper Wszeborowski s189477

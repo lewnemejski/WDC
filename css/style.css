@@ -8,18 +8,13 @@ body
 	margin: 0;
 }
 
-legend {
-	padding: 0px 2px 0px 2px;
-}
-
 table, tr, td {
-	border: 2px solid lightgreen;
+	border: 2px solid darkgreen;
 }
 
 td {
 	text-align: center;
 	background-color: white;
-	height: fit-content;
 }
 
 th {
@@ -27,16 +22,9 @@ th {
 }
 
 table {
-	width: 200px;
-	background-color: lightgreen;
+	width: 245px;
+	background-color: darkgreen;
 	display: inline-block;
-}
-
-fieldset {
-	width: fit-content;
-	border: 2px solid black;
-	margin: 5px;
-	text-align: left;
 }
 
 #header
@@ -65,12 +53,14 @@ fieldset {
 
 #authorization {
 	position: relative;
+	text-align: center;
 	margin: 0 30% 0 30%;
 	width: 40%;
+	justify-content: space-between;
 }
 
 #authorization > section {
-	text-align: center;
+    text-align: center;
 }
 
 #footer {

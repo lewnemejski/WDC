@@ -15,29 +15,31 @@
 		//sanitizeString($nick);
 		//sanitizeString($psw);
 		$user = findUser($nick);
-		
-		if($user['name']==$_POST['name'])
+		//echo "MELKEKEK".$user['name'];
+		if(isset($user['name']) && $user['name']==$_POST['name'])
 		{		
 			if (password_verify($psw, password_hash($user['password'], PASSWORD_DEFAULT)))
 			{
 				$_SESSION['zalogowany'] = true;
 				$_SESSION['user'] = $user['name'];
-				$_SESSION['authorization'] = $user['role'];				
+				$_SESSION['authorization'] = $user['role'];
+				$_SESSION['employee'] = $user['employee'];				
 				unset($_SESSION['blad']);
 				header('Location: test.php');
 			}
 			else 
 			{
 				$_SESSION['blad'] = '<span style="color:red">Nieprawidłowe hasło!</span>';
-				header('Location: login.php');
+				//header('Location: login.php');
 			}
 		}
 		else 
 		{
 			$_SESSION['blad'] = '<span style="color:red">Nieprawidłowa nazwa!</span>';
-			header('Location: login.php');
+			//header('Location: login.php');
 		}
 	}
+	else unset($_SESSION['blad']);
 								
 ?>
 <!DOCTYPE html>
@@ -127,7 +129,6 @@
 					if (isset($_SESSION['blad']))
 					{
 						echo '<div class="error">'.$_SESSION['blad'].'</div>';
-						unset($_SESSION['blad']);
 					}
 				?>
 				<input type="submit" value="Login" name="submit">

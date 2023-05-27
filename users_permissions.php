@@ -3,8 +3,14 @@
 session_start();
 require_once "business.php";
 
+if(!(isset($_SESSION['employee']) && $_SESSION['employee'] == true))
+{
+	header('Location: index.php');
+	exit();
+}
+
 $users = getTable("users");
-$objects = "test";
+$objects = getTable("objects");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
    if (isset($_POST["permission_lvl"])) {
