@@ -95,7 +95,7 @@ if (isset($_POST['name'])) {
             <?php if(count($users) >= 1): ?>
 				<section>
 
-				  <?php if( $_SESSION['authorization'] > 2 ):?>
+				  <?php if( $_SESSION['authorization'] == 10 ):?>
 					  <table>
 						<tr>
 							<th> Users </th>

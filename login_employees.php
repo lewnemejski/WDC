@@ -21,6 +21,13 @@ if (isset($_POST['name'])) {
 				$_SESSION['user'] = $user['name'];
 				$_SESSION['authorization'] = $user['role'];
 				$_SESSION['employee'] = $user['employee'];
+				$roles=getTable("role_rbac");
+				foreach($roles as $role){
+					if($user['id']==$role['user_id']){
+						$_SESSION['employeeName']=$role['object_name'];
+						break;
+					}
+				}
 				unset($_SESSION['blad']);
 				header('Location: test.php');
 			} else {
