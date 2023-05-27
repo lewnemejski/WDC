@@ -17,7 +17,7 @@
 
 	if (file_exists($target_file)) {
 	  echo "Plik już istnieje!<br/>";
-	  echo $target_file.basename($_FILES["fileToUpload"]["name"]);
+	  //echo $target_file.basename($_FILES["fileToUpload"]["name"]);
 	  $uploadOk = 0;
 	}
 
