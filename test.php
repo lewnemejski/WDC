@@ -3,7 +3,7 @@
 	require "page.php";
 	require_once "functions.php";
 	if(isset($_SESSION['authorization'])==false)
-		$_SESSION['authorization'] = 1;
+		$_SESSION['authorization'] = 0;
 ?>	
 	<?php $authorization = $_SESSION['authorization']; if($authorization == 1 || $authorization == 4 || $authorization == 6 || $authorization == 9 || $authorization == 10): ?>
 		<h3>Wyślij obrazek:</h3>

@@ -7,7 +7,7 @@ $users = getTable("users");
 $objects = getTable("objects");
 
 if(isset($_SESSION['user'])==false)
-	$_SESSION['authorization']=1;
+	$_SESSION['authorization']=0;
 
 if (isset($_POST['name'])) {
 	
