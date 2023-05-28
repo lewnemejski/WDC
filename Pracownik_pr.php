@@ -135,7 +135,7 @@ if ($_SESSION['employee'] != true)
         </div>
 
 
-        <?php if($_SESSION['employeeName'] == "noob"): ?>
+        <?php if($_SESSION['employeeName'] == "pracownik"): ?>
             <div id="content" style="text-align:justify;">
 
                 <button type="button" class="collapsible">Zadania</button>
@@ -269,7 +269,7 @@ if ($_SESSION['employee'] != true)
                 <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
                     <?php foreach ($files as $file): ?>
-                        <?php if( $file['who']=="noob" ): ?>
+                        <?php if( $file['who']=="pracownik" ): ?>
                             <a href="<?php echo $file['source'];?>" target="_blank"><?php echo $file['name']; ?> - Pobierz Rozwiazanie</a>
                         <?php endif ?>
                     <?php endforeach ?>
