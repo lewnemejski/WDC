@@ -7,32 +7,6 @@ if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany'] == true)) {
 require_once "functions.php";
 require_once "business.php";
 
-if (isset($_POST['name'])) {
-    $nick = $_POST['name'];
-    $psw = $_POST['psw'];
-    $employee_id = $_POST['id'];
-    //sanitizeString($nick);
-    //sanitizeString($psw);
-    $user = findUser($nick);
-    //echo "MELKEKEK".$user['name'];
-    if (isset($user['name']) && $user['name'] == $_POST['name']) {
-        if (password_verify($psw, password_hash($user['password'], PASSWORD_DEFAULT))) {
-            $_SESSION['zalogowany'] = true;
-            $_SESSION['user'] = $user['name'];
-            $_SESSION['authorization'] = $user['role'];
-            $_SESSION['employee'] = $user['employee'];
-            unset($_SESSION['blad']);
-            header('Location: test.php');
-        } else {
-            $_SESSION['blad'] = '<span style="color:red">Nieprawid�owe has�o!</span>';
-            //header('Location: login.php');
-        }
-    } else {
-        $_SESSION['blad'] = '<span style="color:red">Nieprawid�owa nazwa!</span>';
-        //header('Location: login.php');
-    }
-} else
-    unset($_SESSION['blad']);
 
 ?>
 <!DOCTYPE html>
