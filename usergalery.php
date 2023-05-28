@@ -5,7 +5,7 @@
 	if(isset($_SESSION['user'])==false)
 		$_SESSION['user']='0';
 	if(isset($_SESSION['authorization'])==false)
-		$_SESSION['authorization']=1;
+		$_SESSION['authorization']=0;
 ?>	
 			<h1>Galeria zdjęć użytkowników</h1>
 			<?php
