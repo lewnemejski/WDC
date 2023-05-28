@@ -102,7 +102,7 @@ if (isset($_POST['name'])) {
                                 <a href="galery.php">Galeria</a>
                             </li>
                             <li>
-                                <a href="garden.php">Ogr�dek</a>
+                                <a href="Pracownik_pr.php">Stanowisko</a>
                             </li>
                             <li>
                                 <a href="contact.php">Kontakt</a>
