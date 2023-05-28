@@ -12,10 +12,7 @@
 	{
 		$nick = $_POST['name'];
         $psw = $_POST['psw'];
-		//sanitizeString($nick);
-		//sanitizeString($psw);
 		$user = findUser($nick);
-		//echo "MELKEKEK".$user['name'];
 		if(isset($user['name']) && $user['name']==$_POST['name'])
 		{		
 			if (password_verify($psw, password_hash($user['password'], PASSWORD_DEFAULT)))
@@ -30,13 +27,11 @@
 			else 
 			{
 				$_SESSION['blad'] = '<span style="color:red">Nieprawidłowe hasło!</span>';
-				//header('Location: login.php');
 			}
 		}
 		else 
 		{
 			$_SESSION['blad'] = '<span style="color:red">Nieprawidłowa nazwa!</span>';
-			//header('Location: login.php');
 		}
 	}
 	else unset($_SESSION['blad']);

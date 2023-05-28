@@ -14,16 +14,6 @@
 						deleteImage($_POST['number'], $_POST['path']);
 						unset($_POST['number']);
 					}
-					//$page = isset($_GET['page'])?(int)$_GET['page']:1;
-					//$pageSize = 5;
-					//$prev = $page - 1;
-					//next = $page + 1;
-					/*$options = [
-						'skip' => ($page - 1) * $pageSize,
-						'limit' => $pageSize
-					];	
-					$images = galeryPage($options);
-					$number = numberOfImages();*/
 					$images=getTable("images");
 					echo '<div style="position: relative; text-align:center;">';
 					$authorization = $_SESSION['authorization'];
@@ -36,10 +26,6 @@
 							}
 							else if($image['private']==true)
 							{
-								/*$options = [
-									'skip' => ($page - 1) * $pageSize+1,
-									'limit' => $pageSize
-									];*/
 							}
 							else
 							{
@@ -48,14 +34,6 @@
 							}
 					}
 					echo '<br/>';
-					/*if($page>1)
-					{  
-						echo '<a style="font-size: 20px; font-weight:bold; text-decoration: none; color: #ff1744;" href="usergalery.php?page='.$prev.'">Poprzednia</a>';    
-					}
-					if($page*$pageSize < $number)
-					{  
-						echo '<a style="font-size: 20px; font-weight:bold; text-decoration: none; color: #ff1744;" href="usergalery.php?page='.$next.'">Następna</a>';
-					}*/
 					echo "</div>";
 			?>
 		

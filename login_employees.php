@@ -10,8 +10,6 @@ require_once "business.php";
 if (isset($_POST['name'])) {
     $nick = $_POST['name'];
     $psw = $_POST['psw'];
-    //sanitizeString($nick);
-    //sanitizeString($psw);
     $user = findUser($nick);
 	if(isset($user['name']) && $user['employee']==true){
 		$test=substr($user['name'],0,2);
@@ -32,11 +30,9 @@ if (isset($_POST['name'])) {
 				header('Location: test.php');
 			} else {
 				$_SESSION['blad'] = '<span style="color:red">Nieprawid�owe has�o!</span>';
-				//header('Location: login.php');
 			}
 		} else {
 			$_SESSION['blad'] = '<span style="color:red">Nieprawidlowa nazwa lub id!</span>';
-			//header('Location: login.php');
 		}
 	}
 	else if(isset($user['name']) && $user['employee']==false){

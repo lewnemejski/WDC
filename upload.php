@@ -15,11 +15,10 @@
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	
-	//echo '<div id="content" style="text-align:center; font-size:20px;">';
+	echo '<div id="content" style="text-align:center; font-size:20px;">';
 	if(isset($_POST["submit"])) {
 	  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 	  if($check !== false) {
-		//echo "Plik jest obrazkiem - " . $check["mime"] . "."</br>;
 		$uploadOk = 1;
 	  } else {
 		echo "Plik nie jest obrazkiem!<br/>";
@@ -111,41 +110,6 @@
 			}
 			addImage($image);
 		}
-		/*else 
-		{
-			if (!empty($_GET['id'])) {
-				$id = $_GET['id'];
-				$image = $db->images->findOne(['_id' => new ObjectID($id)]);
-			}
-		}*/
-		if($imageFileType == "png")
-			{$fsource = imagecreatefrompng($target_dir.$source);}
-		else
-			{$fsource = imagecreatefromjpeg($target_dir.$source);}
-		$width = imagesx($fsource);
-		$height = imagesy($fsource);
-		echo "No się udało";
-		$new_w = 200;
-		$new_h = 125;
-		$thumbnail = imagecreatetruecolor($new_w, $new_h);
-		imagecopyresampled($thumbnail, $fsource, 0, 0, 0, 0, $new_w, $new_h, $width, $height);
-		if($imageFileType == "png")
-			{imagepng($thumbnail,$target_dir."thumbs/thumb_".basename($source));}
-		else
-			{imagejpeg($thumbnail,$target_dir."thumbs/thumb_".basename($source));}
-		echo "No się udało";
-		$watermarked = imagecreatetruecolor($width, $height);
-		imagecopyresized($watermarked, $fsource, 0, 0, 0, 0, $width, $height, $width, $height);
-		$color = imagecolorallocatealpha($watermarked, 117, 117, 117);
-		imagettftext($watermarked, 20, 0, $width/2-strlen($_POST['znak']), $height/2, $color, "fonts/arial.ttf", $_POST['znak']);
-		if($imageFileType == "png")
-			{imagepng($watermarked,$target_dir."watermarks/water_".basename($source));}
-		else
-			{imagejpeg($watermarked,$target_dir."watermarks/water_".basename($source));}
-		unset($fsource);
-		unset($thumbnail);
-		unset($watermarked);
-		echo "No się udało";
 	}
 ?>
 </body>
