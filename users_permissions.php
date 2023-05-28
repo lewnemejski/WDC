@@ -151,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		<h3 style="text-align:center"><a href="relocate.php">Powrót</a></h3>
         <div id="footer">
             <footer>
-                Copyright &copy; Kacper Wszeborowski s189477
+                Copyright &copy; Kacper Wszeborowski Beniamin Samujło
             </footer>
         </div>
 

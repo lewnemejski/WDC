@@ -334,7 +334,7 @@ if ($_SESSION['employee'] != true)
 		
         <div id="footer">
             <footer>
-                Copyright &copy; Kacper Wszeborowski s189477
+                Copyright &copy; Kacper Wszeborowski Beniamin Samujło
             </footer>
         </div>
 

@@ -58,7 +58,7 @@
 	echo '</div><a style="text-decoration:none; color:#ff1744; font-size: 20px;" href="test.php" > Powrót </a></div>
 			<div id="footer">
 				<footer>
-					Copyright &copy; Kacper Wszeborowski s189477
+					Copyright &copy; Kacper Wszeborowski Beniamin Samujło
 				</footer>
 			</div>
 		</div>';
