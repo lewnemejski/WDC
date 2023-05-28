@@ -202,12 +202,13 @@ table {
 	list-style-type: none;
 	height: 50px;
 	line-height: 250%;
-	display: inline-block;
 }
 
 #login > li {
-	border: 3px solid red;
-	background-color: white;
+	background-color: #00897b;
+	width: 200px;
+	height: fit-content;
+	padding: 2px 4px 2px 4px;
 }
 
 #login a {
