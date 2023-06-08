@@ -50,7 +50,7 @@
 	if ($uploadOk == 1) 
 	{
 		$name = $_FILES["fileToUpload"]["name"];
-		$who = $_SESSION['employeeName'];	
+		$who = $_SESSION['employeeAcc'];	
 		$source = "uploads/".$_FILES["fileToUpload"]["name"];
 			
 		$document = [

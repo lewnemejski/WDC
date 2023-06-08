@@ -2,6 +2,7 @@
 session_start();
 
 require_once 'business.php';
+require_once "functions.php";
 
 $files=getTable("documents");
 
@@ -135,13 +136,13 @@ if ($_SESSION['employee'] != true)
         </div>
 
 
-        <?php if($_SESSION['employeeName'] == "pracownik"): ?>
+        <?php if(isEmployee($_SESSION['employeeAcc'])): ?>
             <div id="content" style="text-align:justify;">
 
                 <button type="button" class="collapsible">Zadania</button>
                 <section class="content">
                     <?php foreach ($files as $file): ?>
-                        <?php if( $file['who']=="prezes" ): ?>
+                        <?php if(!isEmployee($file['who']) ): ?>
                             <a href="<?php echo $file['source'];?>" target="_blank"> <?php echo $file['name']; ?> - Pobierz Zadanie</a>
                         <?php endif ?>
                     <?php endforeach ?>
@@ -252,7 +253,7 @@ if ($_SESSION['employee'] != true)
             </div>
         <?php endif; ?>
 
-        <?php if ($_SESSION['employeeName'] == "prezes"): ?>
+        <?php if (directEmployee($_SESSION['employeeAcc'])): ?>
             <div id="content" style="text-align:justify;">
 
                 <button type="button" class="collapsible">Zlecenie</button>
@@ -269,7 +270,7 @@ if ($_SESSION['employee'] != true)
                 <button type="button" class="collapsible">Rozwiazania</button>
                 <section class="content">
                     <?php foreach ($files as $file): ?>
-                        <?php if( $file['who']=="pracownik" ): ?>
+                        <?php if(!directEmployee($file['who']) ): ?>
                             <a href="<?php echo $file['source'];?>" target="_blank"><?php echo $file['name']; ?> - Pobierz Rozwiazanie</a>
                         <?php endif ?>
                     <?php endforeach ?>

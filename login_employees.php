@@ -23,6 +23,7 @@ if (isset($_POST['name'])) {
 				foreach($roles as $role){
 					if($user['id']==$role['user_id']){
 						$_SESSION['employeeName']=$role['object_name'];
+						$_SESSION['employeeAcc']=$role['access'];
 						break;
 					}
 				}
