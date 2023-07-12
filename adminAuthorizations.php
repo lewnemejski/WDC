@@ -2,12 +2,15 @@
 
 session_start();
 require_once "business.php";
+require_once "functions.php";
 
 $users = getTable("users");
 $objects = getTable("objects");
 
 if(isset($_SESSION['user'])==false)
 	$_SESSION['authorization']=0;
+else
+	checkAuth();
 
 if (isset($_POST['name'])) {
 	
